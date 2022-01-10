@@ -15,8 +15,8 @@ struct s_list
 struct s_stack
 {
 	t_list *head;
-	size_t size;
-	
+	size_t size;		
+
 };
 
 t_list	*ft_lstnew(int data)
@@ -103,7 +103,7 @@ void	__swap(t_stack *meta_data)
 		return ;
 	temp = meta_data->head->data;	
 	meta_data->head->data = meta_data->head->next->data;
-	meta_data->next->data = temp;
+	meta_data->head->next->data = temp;
 }
 
 int	main(void)
@@ -124,7 +124,7 @@ int	main(void)
 	ft_lstpush_back(&a, test);
 	ft_lstpush_back(&a, test2);
 	ft_lstpush_front(&a, test3);
-	__swap(a.head);
+	__swap(&a);
 	ft_print_lst(&a);
-	ft_clean_stack(&a);
+	__clean(&a);
 }

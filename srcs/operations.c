@@ -1,3 +1,2 @@
-#include "pushswap.h"
+#include "includes.h"
 
-void	__operations(t_stack *)

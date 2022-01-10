@@ -13,9 +13,22 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
+
+#ifndef _SUCCESS_ 
 # define _SUCCESS_ 1
+#endif
+
+#ifndef _ERROR_ 
 # define _ERROR_ (-1)
+#endif
+
+#ifndef _TRUE_ 
 # define _TRUE_ 1
+#endif
+
+#ifndef _FALSE_ 
 # define _FALSE_ 0
+#endif
+
 
 #endif

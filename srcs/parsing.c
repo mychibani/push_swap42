@@ -115,9 +115,3 @@ int	ft_parser(int ac, char **av)
 	free(res);
 	return (_FALSE_);
 }
-
-int	main(int ac, char **av)
-{
-	printf("%d\n", ft_parser(ac, av));
-	while (1);
-}
