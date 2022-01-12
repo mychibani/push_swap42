@@ -1,57 +1,74 @@
-SRCS_FILES =		ft_parsing.c \
-				ft_pushswap.c
+SRCS_FILES		=	parsing.c			\
+					push_swap.c			\
+					operations.c		\
+					main.c
 
-#SRCS_BONUS_FILES =
-
-OBJS_FILES =		${SRCS:.c=.o}
-
-OBJ_BONUS	=		${SRCS_BONUS:.c=.o}
-
-HEADER_FILES		=	-I$(HEADER_PATH)
-
-HEADER_PATH		= 		.
-
-HEADER_NAME		=	libft.h
-
-SRCS_PATH =		.
+HEADER_FILES	=	libft.h				\
+					define.h			\
+					fonctions.h			\
+					includes.h
 
 
-CC		=	gcc
+OBJS_FILES	=		${SRCS:.c=.o}
 
-FLAGS		=	-Wall -Wextra -Werror
+DEPENDS		=		$(SRCS:.c=.d)
 
-RM		=	rm -rf
+HEADER_PATH	=		includes
 
-HEADER		=	libft.h
+HEADER_INC	=		-I $(HEADER_PATH)
 
-NAME		=	libft.a
+SRCS_PATH 	=		srcs
 
-HEADER		=	$(addprefix $(HEADER_PATH)/, $(HEADER_NAME))
+CC			=		gcc
 
-SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
+FLAGS		=		-Wall -Wextra -Werror
 
-SRCS_BONUS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_BONUS_FILES))
+RM			=		rm -rf
 
+NAME		=		push_swap
 
+HEADER		=		$(addprefix $(HEADER_PATH)/, $(HEADER_FILES))
+
+SRCS		=		$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
+
+_END=$'\x1b[0m'
+_BOLD=$'\x1b[1m'
+_UNDER=$'\x1b[4m'
+_REV=$'\x1b[7m'
+
+_GREY=$'\x1b[30m'
+_RED=$'\x1b[31m'
+_GREEN=$'\x1b[32m'
+_YELLOW=$'\x1b[33m'
+_BLUE=$'\x1b[34m'
+_PURPLE=$'\x1b[35m'
+_CYAN=$'\x1b[36m'
+_WHITE=$'\x1b[37m'
+
+_IGREY=$'\x1b[40m'
+_IRED=$'\x1b[41m'
+_IGREEN=$'\x1b[42m'
+_IYELLOW=$'\x1b[43m'
+_IBLUE=$'\x1b[44m'
+_IPURPLE=$'\x1b[45m'
+_ICYAN=$'\x1b[46m'
+_IWHITE=$'\x1b[47m'
 
 all		:	$(NAME)
 
+%.o : %.c
+		$(CC) -c $< -o $@ $(HEADER_INC)
 
-$(NAME)		:	$(OBJS_FILES) $(HEADER)
-			ar rc $(NAME) $(OBJS_FILES)
+$(NAME) : $(OBJS_FILES)
+		$(CC) -o $@ $^
 
-%.o		:	%.c
-			$(CC) $(FLAGS) $(HEADER_FILES) -c $< -o $@
+-include $(DEPENDS)
 
-
-
-bonus		:		$(OBJ_BONUS) $(OBJ) $(INC)
-				ar rc $(NAME) $(OBJ_BONUS)
 clean:
-			${RM} ${OBJS_FILES} ${OBJ_BONUS}
+			$(RM) $(OBJS_FILES)
 
 fclean:		clean
-			${RM} ${NAME}
+			$(RM) $(NAME)
 
 re :		fclean all
 
