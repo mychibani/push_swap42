@@ -6,27 +6,28 @@ SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
 
 SRCS_CHECK		=	srcs/checker/checker.c
 
-HEADER_FILES	=	libft.h				\
-					define.h			\
-					fonctions.h			\
+HEADER_FILES	=	libft.h							\
+					define.h						\
+					fonctions.h						\
 					includes.h
-CHECKER	=	checker
 
-PUSH_SWAP = push_swap
+CHECKER			=	checker
 
-OBJS_OPE = 		${SRCS_OPE:.c=.o}
+PUSH_SWAP 		= 	push_swap
 
-OBJS_SWAP = 	${SRCS_SWAP:.c=.o}
+OBJS_OPE 		= 	${SRCS_OPE:.c=.o}
 
-OBJS_CHECK	=	${SRCS_CHECK:.c=.o}
+OBJS_SWAP 		= 	${SRCS_SWAP:.c=.o}
 
-INCS	=	-I ./includes -I libft/includes/
+OBJS_CHECK		=	${SRCS_CHECK:.c=.o}
 
-CC		=	clang
+INCS			=	-I ./includes -I libft/includes/
 
-CFLAGS	=	-Wall -Wextra -Werror
+CC				=	clang
 
-RM		=	rm -rf
+CFLAGS			=	-Wall -Wextra -Werror
+
+RM				=	rm -rf
 
 _END=$'\e[0m
 _BOLD=$'\e[1m

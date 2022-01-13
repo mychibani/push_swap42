@@ -1,71 +1,5 @@
 #include "includes.h"
 
-char *ft_strdup(char *str)
-{
-	int	i;
-	char *final_str;
-
-	i = 0;
-	while (str[i])
-		i++;
-	final_str = (char *)malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (str[i])
-	{
-		final_str[i] = str[i];
-		i++;
-	}	
-	final_str[i] = '\0';
-	return (final_str);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (_TRUE_);
-	return (_FALSE_);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int i;
-	int j;
-	char *final_line;
-
-	i = 0;
-	j = 0;
-	if (!s2 || !s1)
-		return (_FALSE_);
-	final_line = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!final_line)
-		return (_FALSE_);
-	while (s1[i])
-	{
-		final_line[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		final_line[i] = s2[j];
-		i++;
-		j++;
-	}
-	final_line[i] = '\0';
-	return (final_line);
-}
-
 int	ft_check_str(char *str)
 {
 	int	i;
@@ -89,9 +23,9 @@ int	ft_check_str(char *str)
 	return (_TRUE_);
 }
 
-int	ft_parser(int ac, char **av)
+int	_parse_(int ac, char **av)
 {
-	int	i;
+i	int	i;
 	char *res;
 
 	res = ft_strdup("");

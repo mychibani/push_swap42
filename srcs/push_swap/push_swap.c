@@ -1,24 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
+/*   Updated: 2022/01/13 14:57:45by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	t_stack		a;
-	t_stack		b;
-	t_list		*test;
-	t_list		*test2;
-	t_list		*test3;
+	t_stack		*a;
+	t_stack		*b;
 
-	a.head = NULL;
-	a.size = 0;
-	test = ft_lstnew_doubly_linked(1);
-	test2 = ft_lstnew_doubly_linked(2);	
-	test3 = ft_lstnew_doubly_linked(3);
-	if (!test)
-		return (0);
-	ft_lstpush_back_stack(&a, test);
-	ft_lstpush_back_stack(&a, test2);
-	ft_lstpush_front_stack(&a, test3);
-	__swap(&a);
-	__print_stack(&a);
-	__clean(&a);
+	a = (t_stack *)malloc(sizeof(t_stack));
+	b = (t_stack *)malloc(sizeof(t_stack));
+	a->head = NULL;
+	a->size = 0;
+	b->head = NULL;
+	b->size = 0;
+	if (!a || !b)
+		ft_putstr_fd("Error\n", 2);
+	if (!_parse_(ac, av))
+		ft_putstr_fd("Error\n", 2);
+	return (0);
 }
