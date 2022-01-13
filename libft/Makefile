@@ -1,79 +1,68 @@
-SRCS_FILES =		ft_memset.c \
-				ft_bzero.c \
-				ft_memcpy.c \
-				ft_memmove.c \
-				ft_memchr.c \
-				ft_memcmp.c \
-				ft_strlen.c \
-				ft_isalpha.c \
-				ft_isdigit.c \
-				ft_isalnum.c \
-				ft_isprint.c \
-				ft_isascii.c \
-				ft_isprint.c \
-				ft_toupper.c \
-				ft_tolower.c \
-				ft_striteri.c \
-				ft_strchr.c \
-				ft_strrchr.c \
-				ft_strncmp.c \
-				ft_strlcat.c \
-				ft_strlcpy.c \
-				ft_strnstr.c \
-				ft_atoi.c \
-				ft_calloc.c \
-				ft_strdup.c \
-				ft_strdup.c \
-				ft_substr.c \
-				ft_strjoin.c \
-				ft_strtrim.c \
-				ft_split.c \
-				ft_itoa.c \
-				ft_strmapi.c \
-				ft_putchar_fd.c \
-				ft_putstr_fd.c \
-				ft_putendl_fd.c \
-				ft_putnbr_fd.c
+SRCS_FILES =	./char/ft_isdigit.c			\
+				./char/ft_isprint.c			\
+				./char/ft_isalnum.c			\
+				./char/ft_isalpha.c			\
+				./char/ft_isascii.c			\
+				./char/ft_toupper.c			\
+				./char/ft_tolower.c			\
+				./string/ft_substr.c		\
+				./string/ft_bzero.c			\
+				./string/ft_strncmp.c		\
+				./string/ft_strchr.c		\
+				./string/ft_strlcpy.c		\
+				./string/ft_strlcat.c		\
+				./string/ft_strrchr.c		\
+				./string/ft_strdup.c		\
+				./string/ft_strtrim.c		\
+				./string/ft_strlen.c		\
+				./string/ft_strmapi.c		\
+				./string/ft_strnstr.c		\
+				./string/ft_striteri.c		\
+				./string/ft_strjoin.c		\
+				./stdlib/ft_atoi.c			\
+				./stdlib/ft_itoa.c			\
+				./lists/ft_lstiter.c		\
+				./lists/ft_lstsize.c		\
+				./lists/ft_lstadd_front.c	\
+				./lists/ft_lstadd_back.c	\
+				./lists/ft_lstnew.c			\
+				./lists/ft_lstlast.c		\
+				./lists/ft_lstdelone.c		\
+				./lists/ft_lstclear.c		\
+				./lists/ft_lstmap.c			\
+				./memory/ft_memcmp.c		\
+				./memory/ft_memset.c		\
+				./memory/ft_memcpy.c		\
+				./memory/ft_memchr.c		\
+				./memory/ft_memmove.c		\
+				./memory/ft_calloc.c		\
+				./fd/ft_putchar_fd.c		\
+				./fd/ft_putnbr_fd.c			\
+				./fd/ft_putendl_fd.c		\
+				./fd/ft_putstr_fd.c
 
-SRCS_BONUS_FILES =	ft_lstnew.c \
-					ft_lstadd_front.c \
-					ft_lstsize.c \
-					ft_lstlast.c \
-					ft_lstadd_back.c \
-					ft_lstdelone.c \
-					ft_lstclear.c \
-					ft_lstiter.c \
-					ft_lstmap.c
+OBJS_FILES 		=		${SRCS:.c=.o}
 
-OBJS_FILES =		${SRCS:.c=.o}
-
-OBJ_BONUS	=		${SRCS_BONUS:.c=.o}
-
-HEADER_FILES		=	-I$(HEADER_PATH)
+HEADER_INC		=	-I$(HEADER_PATH)
 
 HEADER_PATH		= 		.
 
-HEADER_NAME		=	libft.h
+HEADER_FILES	=	libft.h
 
-SRCS_PATH =		.
+SRCS_PATH 		=		.
 
 
-CC		=	gcc
+CC				=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 
-RM		=	rm -rf
+RM				=	rm -rf
 
-HEADER		=	libft.h
+NAME			=	libft.a
 
-NAME		=	libft.a
+HEADER			=	$(addprefix $(HEADER_PATH)/, $(HEADER_FILES))
 
-HEADER		=	$(addprefix $(HEADER_PATH)/, $(HEADER_NAME))
-
-SRCS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
-
-SRCS_BONUS		=	$(addprefix $(SRCS_PATH)/, $(SRCS_BONUS_FILES))
-
+SRCS			=	$(addprefix $(SRCS_PATH)/, $(SRCS_FILES))
 
 
 all		:	$(NAME)
@@ -83,12 +72,8 @@ $(NAME)		:	$(OBJS_FILES) $(HEADER)
 			ar rc $(NAME) $(OBJS_FILES)
 
 %o		:	%.c
-			$(CC) $(FLAGS) $(HEADER_FILES) -c $< -o $@
+			$(CC) $(FLAGS) -c $< -o $@ $(HEADER_INC)
 
-
-
-bonus		:		$(OBJ_BONUS) $(OBJ) $(INC)
-				ar rc $(NAME) $(OBJ_BONUS)
 clean:
 			${RM} ${OBJS_FILES} ${OBJ_BONUS}
 
