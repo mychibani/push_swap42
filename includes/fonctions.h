@@ -20,6 +20,7 @@ struct s_stack
 };
 
 char    *ft_strdup(char *str);
+int		nbr_check(char *str, int size);
 int     ft_strlen(char *str);
 int     ft_isdigit(char c);
 int		ft_putstr_fd(char *str, int fd);

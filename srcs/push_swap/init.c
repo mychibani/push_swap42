@@ -1,5 +1,6 @@
 #include "includes.h"
 
+/*a mettre dans libft*/
 t_list	*ft_lstnew_doubly_linked(int data)
 {
 	t_list *new_elem;
@@ -12,6 +13,7 @@ t_list	*ft_lstnew_doubly_linked(int data)
 	new_elem->next = NULL;
 	return (new_elem);
 }
+/**/
 
 void	ft_lstpush_back_stack(t_stack *lst, t_list *node)
 {
@@ -36,6 +38,7 @@ void	ft_lstpush_front_stack(t_stack *lst, t_list *node)
 	lst->head = node;
 }
 
+/*for tests*/
 void	ft_print_elem(t_list *node)
 {
 		printf("%p\n", node);
@@ -44,6 +47,7 @@ void	ft_print_elem(t_list *node)
 		printf("%p\n\n", node->next);
 }
 
+/*for tests*/
 void	__print_stack(t_stack *a)
 {
 	size_t	i;

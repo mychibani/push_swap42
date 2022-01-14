@@ -30,5 +30,16 @@
 # define _FALSE_ 0
 #endif
 
+#ifndef	_INT_SIZE_MAX
+# define _INT_SIZE_MAX 12
+#endif
+
+#ifndef	_INT_MIN_
+# define _INT_MIN_ -2147483648
+#endif
+
+#ifndef	_INT_MAX_
+# define _INT_MAX_ 2147483647
+#endif
 
 #endif
