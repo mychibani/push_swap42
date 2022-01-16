@@ -16,11 +16,12 @@ struct s_stack
 {
 	t_list *head;
 	size_t size;		
-
 };
 
 char    *ft_strdup(char *str);
+void	ft_init_stacks(t_stack **a, t_stack **b, char **av, int ac);
 int		nbr_check(char *str, int size);
+int		ft_atoi(char *str);
 int     ft_strlen(char *str);
 int     ft_isdigit(char c);
 int		ft_putstr_fd(char *str, int fd);

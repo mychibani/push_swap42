@@ -38,32 +38,27 @@ void	ft_lstpush_front_stack(t_stack *lst, t_list *node)
 	lst->head = node;
 }
 
-/*for tests*/
-void	ft_print_elem(t_list *node)
+void	ft_init_stacks(t_stack **a, t_stack **b, char **av, int ac)
 {
-		printf("%p\n", node);
-		printf("%d\n", node->data);
-		printf("%p\n", node->prev);
-		printf("%p\n\n", node->next);
-}
+	int	i;
+	int	nb;
+	t_list *node;
 
-/*for tests*/
-void	__print_stack(t_stack *a)
-{
-	size_t	i;
-	t_list	*current;
-
-	i = 0;
-	current = a->head;
-	while (i < a->size)
+	i =	1;
+	*a = malloc(sizeof(t_stack));
+	*b = malloc(sizeof(t_stack));
+	if (!*a || !*b)
+		return ;
+	while (i < ac)
 	{
-		ft_print_elem(current);
-		current = current->next;
+		nb = ft_atoi(av[i]);
+		node = ft_lstnew_doubly_linked(nb);
+		ft_lstpush_back_stack(*a, node);
 		i++;
 	}
 }
 
-void	__clean(t_stack *list)
+void	_clean_(t_stack *list)
 {
 	size_t	i;
 	t_list	*dent;
@@ -78,15 +73,4 @@ void	__clean(t_stack *list)
 	}
 	list->head = NULL;
 	list->size = 0;
-}
-
-void	__swap(t_stack *meta_data)
-{
-	int temp;
-
-	if (meta_data->size < 2)
-		return ;
-	temp = meta_data->head->data;	
-	meta_data->head->data = meta_data->head->next->data;
-	meta_data->head->next->data = temp;
 }

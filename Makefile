@@ -2,7 +2,8 @@ SRCS_OPE		=	srcs/operations/operations.c
 
 SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
 					srcs/push_swap/parsing.c		\
-					srcs/push_swap/init.c
+					srcs/push_swap/init.c			\
+					srcs/push_swap/tests_utils.c
 
 SRCS_CHECK		=	srcs/checker/checker.c
 
@@ -56,18 +57,18 @@ all:		${PUSH_SWAP} ${CHECKER}
 
 .c.o:
 				@echo "Compiling ${_YELLOW}${_BOLD}$<${_END}..."
-				@${CC} ${INCS} -c $< -o $@ ${INCS}
+				@${CC} ${CFLAGS} ${INCS} -c $< -o $@ ${INCS}
 
 ${PUSH_SWAP}:	${OBJS_SWAP} ${OBJS_OPE}
 				@echo "Compiling ${_GREEN}${_BOLD}libft${_END}..."
 				@${MAKE} -C libft >/dev/null
 				@echo "Compiling ${_CYAN}${_BOLD}push_swap${_END}..."
-				@${CC}  ${INCS} ${OBJS_SWAP} ${OBJS_OPE} -o ${PUSH_SWAP} libft/libft.a
+				@${CC} ${CFLAGS} ${INCS} ${OBJS_SWAP} ${OBJS_OPE} -o ${PUSH_SWAP} libft/libft.a
 
 ${CHECKER}:		${OBJS_CHECK} ${OBJS_OPE}
 				@echo "Compiling ${_GREEN}${_BOLD}libft${_END}..."
 				@echo "Compiling ${_CYAN}${_BOLD}checker${_END}..."
-				@${CC} ${INCS} ${OBJS_CHECK} ${OBJS_OPE} -o ${CHECKER} libft/libft.a
+				@${CC} ${CFLAGS} ${INCS} ${OBJS_CHECK} ${OBJS_OPE} -o ${CHECKER} libft/libft.a
 
 clean:
 				@echo "Deleting ${_RED}${_BOLD}binary files${_END}..."

@@ -46,7 +46,7 @@ int	_parse_(int ac, char **av)
 	res = ft_strdup("");
 	i = 1;
 	if (ac < 2)
-		return (_ERROR_);
+		return (free(res), _ERROR_);
 	while (i < ac)
 	{
 		res = ft_strjoin(res, " ");
@@ -54,10 +54,6 @@ int	_parse_(int ac, char **av)
 		i++;
 	}
 	if (ft_check_str(res) != _ERROR_)
-	{
-		free(res);
-		return (_SUCCESS_);
-	}
-	free(res);
-	return (_ERROR_);
+		return (free(res), _SUCCESS_);
+	return (free(res), _ERROR_);
 }
