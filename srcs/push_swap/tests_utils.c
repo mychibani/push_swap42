@@ -1,6 +1,6 @@
 #include "includes.h"
 
-void	ft_print_elem(t_list *node)
+void	ft_print_elem(t_stack *node)
 {
 		printf("%p\n", node);
 		printf("%d\n", node->data);
@@ -9,10 +9,10 @@ void	ft_print_elem(t_list *node)
 }
 
 /*for tests*/
-void	_print_stack(t_stack *a)
+void	_print_data(t_data *a)
 {
 	size_t	i;
-	t_list	*current;
+	t_stack	*current;
 
 	i = 0;
 	current = a->head;

@@ -38,7 +38,7 @@ int	ft_check_str(char *str)
 	return (_SUCCESS_);
 }
 
-int	_parse_(int ac, char **av)
+int	_parse_(int ac, char **av, t_data *data)
 {
 	int		i;
 	char	*res;
@@ -53,7 +53,8 @@ int	_parse_(int ac, char **av)
 		res = ft_strjoin(res, av[i]);
 		i++;
 	}
-	if (ft_check_str(res) != _ERROR_)
-		return (free(res), _SUCCESS_);
-	return (free(res), _ERROR_);
+	if (ft_check_str(res) == _ERROR_)
+		return (free(res), _ERROR_);
+	data->string = res;
+	return (_SUCCESS_);
 }

@@ -1,11 +1,11 @@
 #include "includes.h"
 
 /*a mettre dans libft*/
-t_list	*ft_lstnew_doubly_linked(int data)
+t_stack	*ft_lstnew_doubly_linked(int data)
 {
-	t_list *new_elem;
+	t_stack *new_elem;
 
-	new_elem = (t_list *)malloc(sizeof(t_list));
+	new_elem = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_elem)	
 		return (NULL);
 	new_elem->data = data;
@@ -15,8 +15,11 @@ t_list	*ft_lstnew_doubly_linked(int data)
 }
 /**/
 
-void	ft_lstpush_back_stack(t_stack *lst, t_list *node)
+void	ft_lstpush_back_data(t_data *lst, int nb)
 {
+	t_stack *node;
+
+	node = ft_lstnew_doubly_linked(nb);
 	if (!lst->size)
 	{
 		lst->head = node;
@@ -32,45 +35,59 @@ void	ft_lstpush_back_stack(t_stack *lst, t_list *node)
 	lst->size += 1;
 }
 
-void	ft_lstpush_front_stack(t_stack *lst, t_list *node)
+void	ft_lstpush_front_data(t_data *lst, int nb)
 {
-	ft_lstpush_back_stack(lst, node);
+	t_stack *node;
+
+	node = ft_lstnew_doubly_linked(nb);
+	if (!lst->size)
+	{
+		lst->head = node;
+		node->prev = node;	
+		node->next = node;	
+		return ;
+	}
+	node->next = lst->head;
+	node->prev = lst->head->prev;
+	lst->head->prev = node;
+	node->prev->next = node;
 	lst->head = node;
 }
 
-void	ft_init_stacks(t_stack **a, t_stack **b, char **av, int ac)
+int		_init_(t_data *prog_data)
 {
 	int	i;
-	int	nb;
-	t_list *node;
-
-	i =	1;
-	*a = malloc(sizeof(t_stack));
-	*b = malloc(sizeof(t_stack));
-	if (!*a || !*b)
-		return ;
-	while (i < ac)
-	{
-		nb = ft_atoi(av[i]);
-		node = ft_lstnew_doubly_linked(nb);
-		ft_lstpush_back_stack(*a, node);
-		i++;
-	}
-}
-
-void	_clean_(t_stack *list)
-{
-	size_t	i;
-	t_list	*dent;
+	char *res;
 
 	i = 0;
-	while (i < list->size)
+	res = prog_data->string;
+	while (res[i])
 	{
-		dent = list->head;	
-		list->head = dent->next;
+		while (res[i] == ' ')
+			i++;
+		if (!res[i])
+			break ;
+		ft_lstpush_back_data(prog_data, ft_atoi(&res[i]));
+		printf("%zu\n", prog_data->size);
+		while (ft_isdigit(res[i]) || res[i] == '-')
+			i++;
+	}
+	return (_SUCCESS_);
+}
+
+void	_clean_(t_data *stack)
+{
+	size_t		i;
+	t_stack		*dent;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		dent = stack->head;
+		stack->head = dent->next;
 		free(dent);
 		i++;
 	}
-	list->head = NULL;
-	list->size = 0;
+	stack->head = NULL;
+	stack->size = 0;
 }
