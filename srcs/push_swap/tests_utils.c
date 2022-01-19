@@ -9,14 +9,14 @@ void	ft_print_elem(t_stack *node)
 }
 
 /*for tests*/
-void	_print_data(t_data *a)
+void		_print_data_(t_data *data)
 {
 	size_t	i;
 	t_stack	*current;
 
 	i = 0;
-	current = a->head;
-	while (i < a->size)
+	current = data->head;
+	while (i < data->size)
 	{
 		ft_print_elem(current);
 		current = current->next;

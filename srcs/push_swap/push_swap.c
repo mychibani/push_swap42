@@ -6,33 +6,33 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
-/*   Updated: 2022/01/17 20:27:25 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:17:27by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes.h"
 
+void	free_all(t_data *a, t_data *b)
+{
+	free(a);
+	free(b);
+}
+
 int	main(int ac, char **av)
 {
-	t_data		*prog_data_a;
-	t_data		*prog_data_b;
+	t_data		*a;
+	t_data		*b;
 
-	prog_data_a = (t_data *)malloc(sizeof(t_data));
-	prog_data_b = (t_data *)malloc(sizeof(t_data));
-	prog_data_a = NULL;
-	prog_data_b = NULL;
-	if (!prog_data_a || !prog_data_b)
+	a = malloc(sizeof(t_data));
+	b = malloc(sizeof(t_data));
+	if (!a || !b)
 		return(ft_putstr_fd("Error\n", 2));
-	if (_parse_(ac, av, prog_data_a) == _ERROR_)
-		return(ft_putstr_fd("Error\n", 2));
-	if (_init_(prog_data_a) == _ERROR_)
-		return(ft_putstr_fd("Error\n", 2));
-
-
-
-
-
-
-	// _clean_(prog_data_a);
+	if (_parse_(ac, av, a) == _ERROR_)
+		return(free_all(a, b), ft_putstr_fd("Error\n", 2));
+	if (_init_(a) == _ERROR_)
+		return(free_all(a, b), ft_putstr_fd("Error\n", 2));
+	_print_data_(a);
+	_clean_(a, b);
+	free_all(a, b);
 	return (0);
 }
