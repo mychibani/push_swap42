@@ -34,6 +34,7 @@ void		ft_lstpush_front_data(t_data *data, t_stack *node);
 void		ft_print_elem(t_stack *node);
 void		_print_data_(t_data *data);
 void		_clean_(t_data *a, t_data *b);
+void		_clean(t_data *a, t_data *b);
 void		_swap_(t_data *data, t_data *b);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strdup(char *str);

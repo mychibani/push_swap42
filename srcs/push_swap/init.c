@@ -75,23 +75,20 @@ int	_is_duplicate_elem_(t_data *a)
 
 int	_is_sorted_stack_(t_data *a)
 {
-	t_stack		*current;
-	size_t		i;
+	size_t	i;
+	t_stack *current;
 
 	i = 0;
 	current = a->head;
 	if (a->size < 2)
 		return (_TRUE_);
-	while (i < a->size)
+	while (i < a->size - 1)
 	{
-		printf("current = %d\n", current->data);
-		printf("current = %d\n", current->next->data);
-		if (current->data < current->next->data)
+		if (current->data > current->next->data)
 			return (_FALSE_);
 		current = current->next;
 		i++;
 	}
-	printf("PUUUUUUTE\n");
 	return (_TRUE_);
 }
 
@@ -114,7 +111,7 @@ int		_init_(t_data *a)
 		while (ft_isdigit(res[i]) || res[i] == '-')
 			i++;
 	}
-	if (_is_duplicate_elem_(a) || _is_sorted_stack_(a))
+	if (_is_duplicate_elem_(a))
 	{
 		free(a->string);
 		return (_ERROR_);
@@ -147,4 +144,6 @@ void		_clean_(t_data *a, t_data *b)
 	}
 	b->head = NULL;
 	b->size = 0;
+	free(a);
+	free(b);
 }

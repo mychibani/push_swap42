@@ -12,11 +12,6 @@
 
 #include "includes.h"
 
-void	free_all(t_data *a, t_data *b)
-{
-	free(a);
-	free(b);
-}
 
 int	main(int ac, char **av)
 {
@@ -28,11 +23,14 @@ int	main(int ac, char **av)
 	if (!a || !b)
 		return(ft_putstr_fd("Error\n", 2));
 	if (_parse_(ac, av, a) == _ERROR_)
-		return(free_all(a, b), ft_putstr_fd("Error\n", 2));
+		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
 	if (_init_(a) == _ERROR_)
-		return(free_all(a, b), ft_putstr_fd("Error\n", 2));
-	_print_data_(a);
-	_clean_(a, b);
-	free_all(a, b);
-	return (0);
+		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
+	if (_is_sorted_stack_(a))
+		return (_clean_(a, b), 0);
+	if (_sorting_algorithm_(a, b))
+		return (_clean_(a, b), 0);
+	if (_optimus_algo_(a, b))
+		return (_clean(a, b), 0);
+	return (_clean_(a, b), 0);
 }

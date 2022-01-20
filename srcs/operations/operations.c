@@ -1,22 +1,28 @@
 #include "includes.h"
 
-// void	__swap(t_stack *meta_data)
-// {
-// 	int temp;
+void	swap(t_stack *meta_data)
+{
+ 	int temp;
 
-// 	if (meta_data->size < 2)
-// 		return ;
-// 	temp = meta_data->head->data;	
-// 	meta_data->head->data = meta_data->head->next->data;
-// 	meta_data->head->next->data = temp;
-// }
+ 	if (meta_data->size < 2)
+ 		return ;
+ 	temp = meta_data->head->data;	
+ 	meta_data->head->data = meta_data->head->next->data;
+ 	meta_data->head->next->data = temp;
+}
 
-// void    __rotate(t_stack *meta_data)
-// {
+void    rotate(t_stack *meta_data)
+{
 
-// }
 
-// void    __push(t_stack *stack_a, t_stack *stack_b)
-// {
+}
 
-// }
+void    push(t_stack *stack_a, t_stack *stack_b)
+{
+
+}
+
+void    reverse_rotate(t_stack *a, t_stack *b)
+{
+
+}
