@@ -1,4 +1,8 @@
-SRCS_OPE		=	srcs/operations/operations.c
+SRCS_OPE		=	srcs/operations/swap_ope.c		 \
+					srcs/operations/push_ope.c		 \
+					srcs/operations/reverse_rotate.c \
+					srcs/operations/rotate.c		 \
+
 
 SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
 					srcs/push_swap/parsing.c		\
