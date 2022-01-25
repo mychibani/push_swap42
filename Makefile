@@ -30,7 +30,7 @@ INCS			=	-I ./includes -I libft/includes/
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address -g3
 RM				=	rm -rf
 
 _END=$'\e[0m

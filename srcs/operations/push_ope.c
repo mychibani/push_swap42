@@ -1,38 +1,35 @@
-// #include "includes.h"
+#include "includes.h"
 
-// void	_delete_elem_(t_stack *elem)
-// {
-// 	if (elem = elem->next)
-// 		elem = NULL;
-// 	else
-// 	{
-// 		elem->prev->next = elem->next;
-// 		elem->next->prev = elem->prev;
-// 		elem = elem->next;
-// 	}
-// }
+void	pa(t_data *a, t_data *b)
+{
+	t_stack *elem;
+	t_stack	*temp;
 
-// void	pa(t_data *a, t_data *b)
-// {
-// 	t_stack *elem;
+	if (b->size < 1)
+		return ;
+	temp = a->head;
+	elem = a->head;
+	elem = elem->next;
+	elem->prev = a->head->prev;
+	a->head->prev->next = elem;
+	a->head = elem;
+	a->size -= 1;
+	ft_lstpush_front_data(b, temp);
+}
 
-// 	if (b->size < 1)
-// 		return ;
+void	pb(t_data *a, t_data *b)
+{
+	t_stack *elem;
+	t_stack	*temp;
 
-// }
-
-// void	pb(t_data *a, t_data *b)
-// {
-// 	t_stack *temp_copy;
-// 	t_stack *dent;
-
-// 	if (a->size < 1)
-// 		return ;
-// 	temp_copy = a->head; 
-	
-// 	ft_lstpush_back_data(b, temp_copy);
-// 	dent = a->head;
-// 	a->head = dent->next;
-// 	free(dent);
-// 	a->size--;
-// }
+	if (b->size < 1)
+		return ;
+	temp = b->head;
+	elem = b->head;
+	elem = elem->next;
+	elem->prev = b->head->prev;
+	b->head->prev->next = elem;
+	b->head = elem;
+	b->size -= 1;
+	ft_lstpush_front_data(a, temp);
+}

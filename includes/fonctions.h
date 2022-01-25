@@ -42,5 +42,6 @@ char		*ft_strdup(char *str);
 t_stack		*ft_lstnew_doubly_linked(int data);
 void		pb(t_data *a, t_data *b);
 void		pa(t_data *a, t_data *b);
+void		sa(t_data *a);
 
 #endif
