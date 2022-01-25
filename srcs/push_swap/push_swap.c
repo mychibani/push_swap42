@@ -28,9 +28,24 @@ int	main(int ac, char **av)
 		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
 	if (_is_sorted_stack_(a))
 		return (_clean_(a, b), 0);
-	if (_sorting_algorithm_(a, b))
-		return (_clean_(a, b), 0);
-	if (_optimus_algo_(a, b))
-		return (_clean(a, b), 0);
+	// pb(a, b);
+	ft_lstpush_back_data(b, ft_lstnew_doubly_linked(12));
+	ft_lstpush_back_data(b, ft_lstnew_doubly_linked(3));
+	t_stack *elem;
+	t_stack *temp;
+
+	temp = a->head;
+	elem = a->head;
+	elem = elem->next;
+	elem->prev = a->head->prev;
+	a->head->prev->next = elem;
+	a->head = elem;
+	a->size -= 1;
+	ft_lstpush_front_data(b, temp);
+	_print_data_(b);
+	// if (_sorting_algorithm_(a, b))
+	// 	return (_clean_(a, b), 0);
+	// if (_optimus_algo_(a, b))
+	// 	return (_clean(a, b), 0);
 	return (_clean_(a, b), 0);
 }

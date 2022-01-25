@@ -1,5 +1,5 @@
-#ifndef FCT_H
-# define FCT_H
+#ifndef FONCTIONS_H
+# define FONCTIONS_H
 
 typedef struct s_stack		t_stack;
 typedef struct s_data		t_data;
@@ -20,6 +20,7 @@ struct s_data
 	char		*string;
 };
 
+t_data		*_init_stack_(void);
 int			_init_(t_data *prog_data);
 int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);
@@ -39,5 +40,7 @@ void		_swap_(t_data *data, t_data *b);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strdup(char *str);
 t_stack		*ft_lstnew_doubly_linked(int data);
+void		pb(t_data *a, t_data *b);
+void		pa(t_data *a, t_data *b);
 
 #endif

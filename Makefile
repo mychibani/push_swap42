@@ -1,13 +1,13 @@
-SRCS_OPE		=	srcs/operations/swap_ope.c		 \
-					srcs/operations/push_ope.c		 \
-					srcs/operations/reverse_rotate.c \
-					srcs/operations/rotate.c		 \
-
-
 SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
 					srcs/push_swap/parsing.c		\
 					srcs/push_swap/init.c			\
-					srcs/push_swap/tests_utils.c
+					srcs/push_swap/tests_utils.c	\
+
+SRCS_OPE		=	srcs/operations/swap_ope.c				\
+					srcs/operations/push_ope.c				\
+					srcs/operations/reverse_rotate_ope.c	\
+					srcs/operations/rotate_ope.c			\
+
 
 SRCS_CHECK		=	srcs/checker/checker.c
 
@@ -28,7 +28,7 @@ OBJS_CHECK		=	${SRCS_CHECK:.c=.o}
 
 INCS			=	-I ./includes -I libft/includes/
 
-CC				=	clang
+CC				=	gcc
 
 CFLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -rf
@@ -56,7 +56,7 @@ _IPURPLE=$'\e[45m
 _ICYAN=$'\e[46m
 _IWHITE=$'\e[47m
 
-all:		${PUSH_SWAP} ${CHECKER}
+all:		${PUSH_SWAP}
 
 .c.o:
 				@echo "Compiling ${_YELLOW}${_BOLD}$<${_END}..."

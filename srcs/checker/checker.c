@@ -1,6 +1,6 @@
 #include "includes.h"
 
-int main(void)
+int main()
 {
-	printf("Ceci est un Checker pas fais\n");
+    printf("oui");
 }
