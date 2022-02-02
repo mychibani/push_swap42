@@ -9,6 +9,13 @@ SRCS_OPE		=	srcs/operations/swap_ope.c				\
 					srcs/operations/rotate_ope.c			\
 
 
+SRCS_ALGO		=	srcs/algorithms/sorting.c
+
+SRCS_UTILS		=	srcs/utils/ft_lstadd_back_data.c		\
+					srcs/utils/ft_lstpush_front_data.c		\
+					srcs/utils/ft_lstpush_back_data.c		\
+					srcs/utils/ft_lstnew_doubly_linked.c		\
+
 SRCS_CHECK		=	srcs/checker/checker.c
 
 HEADER_FILES	=	libft.h							\
@@ -30,7 +37,7 @@ INCS			=	-I ./includes -I libft/includes/
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS			=	-Wall -Wextra -Werror -g
 RM				=	rm -rf
 
 _END=$'\e[0m

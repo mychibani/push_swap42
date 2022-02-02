@@ -1,21 +1,24 @@
 #include "includes.h"
 
+/*for tests*/
 void	ft_print_elem(t_stack *node)
 {
-		printf("%p\n", node);
-		printf("%d\n", node->data);
-		printf("%p\n", node->prev);
-		printf("%p\n\n", node->next);
+		printf("\tnode == %p\n", node);
+		printf("\tnode data == %d\n", node->data);
+		printf("\tnode prev == %p\n", node->prev);
+		printf("\tnode next == %p\n\n", node->next);
 }
 
 /*for tests*/
 void		_print_data_(t_data *data)
 {
-	size_t	i;
-	t_stack	*current;
+	t_stack		*current;
+	size_t		i;
 
 	i = 0;
 	current = data->head;
+	printf("data->head == %p\n", data->head);
+	printf("data->size == %zu\n", data->size);
 	while (i < data->size)
 	{
 		ft_print_elem(current);

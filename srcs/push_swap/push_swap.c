@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
-/*   Updated: 2022/01/25 23:24:38 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:58:32 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,16 @@
 int	_init_stacks_(t_data **a, t_data **b)
 {
 
-	*a = malloc(sizeof(t_data));
-	*b = malloc(sizeof(t_data));
+	*a = (t_data *)malloc(sizeof(t_data));
+	*b = (t_data *)malloc(sizeof(t_data));
 	if (!a || !b)
 		return (_ERROR_);
 	(*a)->size = 0;
 	(*a)->head = NULL;
-	(*a)->tail = NULL;
 	(*a)->string = NULL;
 	(*b)->size = 0;
 	(*b)->head = NULL;
 	(*b)->string = NULL;
-	(*b)->tail = NULL;
 	return (_SUCCESS_);
 }
 
@@ -43,10 +41,7 @@ int	main(int ac, char **av)
 		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
 	if (_is_sorted_stack_(a))
 		return (_clean_(a, b), 0);
-	// pb(a, b);
-	sa(a);
-	_print_data_(a);
-	// if (_sorting_algorithm_(a, b))
+	if (_sorting_algorithms_(a, b))
 	// 	return (_clean_(a, b), 0);
 	// if (_optimus_algo_(a, b))
 	// 	return (_clean(a, b), 0);
