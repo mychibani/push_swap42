@@ -3,6 +3,7 @@
 
 typedef struct s_stack		t_stack;
 typedef struct s_data		t_data;
+typedef struct s_res		t_res;
 
 struct s_stack
 {
@@ -18,6 +19,13 @@ struct s_data
 	t_stack		*head;
 	char		*string;
 };
+
+struct s_res
+{
+	char *op;
+	t_res *next;
+};
+
 
 t_data		*_init_stack_(void);
 int			_init_(t_data *prog_data);
