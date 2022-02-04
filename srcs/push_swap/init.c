@@ -67,34 +67,47 @@ int		_init_(t_data *a)
 	return (_SUCCESS_);
 }
 
-void		_clean_(t_data *a, t_data *b, t_list *res)
+int	*_init_index_tab(int size)
 {
-	size_t		i;
-	t_stack		*elem;
+	int	*tab;
+	int	i;
+
+	tab = (int *)malloc(sizeof(int) * size);
+	if (!tab)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
+}
+
+int	_index_sort_(t_data *a)
+{
+	t_stack *curr;
+	t_stack *to_check;
+	int 	*index_tab;
+	int		i;
+	int		j;
 
 	i = 0;
-	free(a->string);
-	free(a->index_tab);
+	index_tab = _init_index_tab(a->size);
+	curr = a->head;
 	while (i < a->size)
 	{
-		elem = a->head;
-		a->head = dent->next;
-		free(elem);
+		j = 0;
+		while (j < a->size)
+		{
+			if (curr->data > to_check->data)
+				index_tab[i]++;
+			to_check = to_check->next;
+			j++;
+		}
+		curr = curr->next;
 		i++;
 	}
-	a->head = NULL;
-	a->size = 0;
-	i = 0;
-	while (i < b->size)
-	{
-		elem = b->head;
-		b->head = elem->next;
-		free(dent);
-		i++;
-	}
-	b->head = NULL;
-	b->size = 0;
-	free(a);
-	free(b);
-	ft_lstclear()
+	a->index_tab = index_tab;
+	return (_SUCCESS_);
 }

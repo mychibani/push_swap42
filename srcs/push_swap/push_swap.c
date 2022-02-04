@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
-/*   Updated: 2022/02/04 13:48:12 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:20:00 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	main(int ac, char **av)
 {
 	t_data		*a;
 	t_data		*b;
-	t_list		*res;
 
-	res = NULL;
 	if (_init_stacks_(&a, &b) == _ERROR_)
 		return (ft_putstr_fd("Error\n", 2), 0);
 	if (_parse_(ac, av, a) == _ERROR_)
@@ -47,5 +45,5 @@ int	main(int ac, char **av)
 	// 	return (_clean_(a, b), 0);
 	// if (_optimus_algo_(a, b))
 	// 	return (_clean(a, b), 0);
-	return (_clean_(a, b, res), 0);
+	return (_clean_(a, b), 0);
 }
