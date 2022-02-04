@@ -3,7 +3,7 @@
 
 typedef struct s_stack		t_stack;
 typedef struct s_data		t_data;
-typedef struct s_res		t_res;
+typedef struct s_list		t_list;
 
 struct s_stack
 {
@@ -15,19 +15,34 @@ struct s_stack
 
 struct s_data
 {
-	size_t		size;
 	t_stack		*head;
+	size_t		size;
 	char		*string;
+	int			*index_tab;
 };
 
-struct s_res
+struct s_list
 {
-	char *op;
-	t_res *next;
+	void	*content;
+	t_list	*next;
 };
 
+enum	e_op
+{
+	PA,
+	PB,
+	SA,
+	SB,
+	SS,
+	RA,
+	RB,
+	RRA,
+	RRB,
+	RRR,
+};
 
 t_data		*_init_stack_(void);
+int			_sorting_prep_(t_data *a)
 int			_init_(t_data *prog_data);
 int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);

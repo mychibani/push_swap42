@@ -1,6 +1,6 @@
 #include "includes.h"
 
-void	sa(t_data *a)
+int	sa(t_data *a)
 {
  	int temp;
 
@@ -9,10 +9,10 @@ void	sa(t_data *a)
  	temp = a->head->data;	
  	a->head->data = a->head->next->data;
  	a->head->next->data = temp;
-	printf("sa\n");
+	return (SA);
 }
 
-void	sb(t_data *b)
+int	sb(t_data *b)
 {
  	int temp;
 
@@ -21,13 +21,13 @@ void	sb(t_data *b)
  	temp = b->head->data;	
  	b->head->data = b->head->next->data;
  	b->head->next->data = temp;
-	printf("sb\n");
+	return (SB);
 }
 
 
-void	ss(t_data *a, t_data *b)
+int	ss(t_data *a, t_data *b)
 {
 	sa(a);
 	sa(b);
-	printf("sb\n");
+	return (SS);
 }

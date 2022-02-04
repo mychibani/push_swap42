@@ -67,18 +67,19 @@ int		_init_(t_data *a)
 	return (_SUCCESS_);
 }
 
-void		_clean_(t_data *a, t_data *b)
+void		_clean_(t_data *a, t_data *b, t_list *res)
 {
 	size_t		i;
-	t_stack		*dent;
+	t_stack		*elem;
 
 	i = 0;
 	free(a->string);
+	free(a->index_tab);
 	while (i < a->size)
 	{
-		dent = a->head;
+		elem = a->head;
 		a->head = dent->next;
-		free(dent);
+		free(elem);
 		i++;
 	}
 	a->head = NULL;
@@ -86,8 +87,8 @@ void		_clean_(t_data *a, t_data *b)
 	i = 0;
 	while (i < b->size)
 	{
-		dent = b->head;
-		b->head = dent->next;
+		elem = b->head;
+		b->head = elem->next;
 		free(dent);
 		i++;
 	}
@@ -95,4 +96,5 @@ void		_clean_(t_data *a, t_data *b)
 	b->size = 0;
 	free(a);
 	free(b);
+	ft_lstclear()
 }

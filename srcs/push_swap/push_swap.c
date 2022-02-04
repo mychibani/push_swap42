@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
-/*   Updated: 2022/02/01 13:58:32 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:48:12 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	_init_stacks_(t_data **a, t_data **b)
 		return (_ERROR_);
 	(*a)->size = 0;
 	(*a)->head = NULL;
-	(*a)->string = NULL;
 	(*b)->size = 0;
 	(*b)->head = NULL;
-	(*b)->string = NULL;
 	return (_SUCCESS_);
 }
 
@@ -32,7 +30,9 @@ int	main(int ac, char **av)
 {
 	t_data		*a;
 	t_data		*b;
+	t_list		*res;
 
+	res = NULL;
 	if (_init_stacks_(&a, &b) == _ERROR_)
 		return (ft_putstr_fd("Error\n", 2), 0);
 	if (_parse_(ac, av, a) == _ERROR_)
@@ -41,9 +41,11 @@ int	main(int ac, char **av)
 		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
 	if (_is_sorted_stack_(a))
 		return (_clean_(a, b), 0);
-	if (_sorting_algorithms_(a, b))
+	if (_sorting_prep_(a) == _ERROR_)
+		return (_clean_(a, b), 0);
+	//if (_sorting_algorithms_(a, b, res))
 	// 	return (_clean_(a, b), 0);
 	// if (_optimus_algo_(a, b))
 	// 	return (_clean(a, b), 0);
-	return (_clean_(a, b), 0);
+	return (_clean_(a, b, res), 0);
 }

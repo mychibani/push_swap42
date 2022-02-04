@@ -1,16 +1,20 @@
-// #include "includes.h"
+#include "includes.h"
 
-// void	ra(t_data *a, t_data *b
-// {
+int ra(t_data *a)
+{
+    a->head = a->head->next;
+    return (RA);
+}
 
-// }
+int rb(t_data *b)
+{
+    b->head = b->head;
+    return (RB);
+}
 
-// void	rb(t_data *a, t_data *b
-// {
-
-// }
-
-// void	rr(t_data *a, t_data *b
-// {
-
-// }
+void	rrr(t_data *a, t_data *b
+{
+    ra(a);
+    rb(b);
+    return (RRR);
+}

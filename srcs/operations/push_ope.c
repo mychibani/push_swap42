@@ -1,22 +1,5 @@
 #include "includes.h"
 
-// void	pa(t_data *a, t_data *b)
-// {
-// 	t_stack *elem;
-// 	t_stack	*temp;
-
-// 	if (b->size < 1)
-// 		return ;
-// 	temp = a->head;
-// 	elem = a->head;
-// 	elem = elem->next;
-// 	elem->prev = a->head->prev;
-// 	a->head->prev->next = elem;
-// 	a->head = elem;
-// 	a->size -= 1;
-// 	ft_lstpush_front_data(b, temp);
-// }
-
 void    reinit(t_data *data, t_stack *head, size_t size)
 {
     data->head = head;
@@ -39,4 +22,24 @@ int     pb(t_data *a, t_data *b)
         reinit(a, a->head->next, a->size - 1);
     }
 	ft_lstpush_front_data(b, elem);
+    return (PB);
+}
+
+int     pa(t_data *a, t_data *b)
+{
+    t_stack *elem;
+
+	if (b->size < 1)
+		return ;
+    if (b->size == 1)
+        reinit(a, NULL, 0);
+    else
+    {
+        b->head->next->prev = b->head->prev;
+        b->head->prev->next = b->head->next;
+        elem = b->head;
+        reinit(b, b->head->next, b->size - 1);
+    }
+	ft_lstpush_front_data(b, elem);
+    return (PB);
 }
