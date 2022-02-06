@@ -5,6 +5,7 @@ void	ft_print_elem(t_stack *node)
 {
 		printf("\tnode == %p\n", node);
 		printf("\tnode data == %d\n", node->data);
+		printf("\tnode index == %d\n", node->index);
 		printf("\tnode prev == %p\n", node->prev);
 		printf("\tnode next == %p\n\n", node->next);
 }

@@ -11,7 +11,7 @@ int     pb(t_data *a, t_data *b)
     t_stack *elem;
 
 	if (a->size < 1)
-		return ;
+		return (-1);
     if (a->size == 1)
         reinit(a, NULL, 0);
     else
@@ -30,7 +30,7 @@ int     pa(t_data *a, t_data *b)
     t_stack *elem;
 
 	if (b->size < 1)
-		return ;
+		return (-1);
     if (b->size == 1)
         reinit(a, NULL, 0);
     else

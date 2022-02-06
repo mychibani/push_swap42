@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:49:46 by ychibani          #+#    #+#             */
-/*   Updated: 2022/02/04 14:20:00 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:20:00by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 	t_data		*b;
 
 	if (_init_stacks_(&a, &b) == _ERROR_)
-		return (ft_putstr_fd("Error\n", 2), 0);
+		return (0);
 	if (_parse_(ac, av, a) == _ERROR_)
 		return (_clean_(a, b), ft_putstr_fd("Error\n", 2));
 	if (_init_(a) == _ERROR_)

@@ -47,7 +47,7 @@ int	_is_sorted_stack_(t_data *a)
 
 int		_init_(t_data *a)
 {
-	int		i;
+	size_t	i;
 	char	*res;
 
 	i = 0;
@@ -58,56 +58,11 @@ int		_init_(t_data *a)
 			i++;
 		if (!res[i])
 			break ;
-		ft_lstadd_back_data(a, ft_atoi(&res[i]));
+		ft_lstadd_back_data(a, (int)ft_atoi(&res[i]));
 		while (ft_isdigit(res[i]) || res[i] == '-')
 			i++;
 	}
 	if (_is_duplicate_elem_(a))
 		return (_ERROR_);
-	return (_SUCCESS_);
-}
-
-int	*_init_index_tab(int size)
-{
-	int	*tab;
-	int	i;
-
-	tab = (int *)malloc(sizeof(int) * size);
-	if (!tab)
-		return (0);
-	i = 0;
-	while (i < size)
-	{
-		tab[i] = 0;
-		i++;
-	}
-	return (tab);
-}
-
-int	_index_sort_(t_data *a)
-{
-	t_stack *curr;
-	t_stack *to_check;
-	int 	*index_tab;
-	int		i;
-	int		j;
-
-	i = 0;
-	index_tab = _init_index_tab(a->size);
-	curr = a->head;
-	while (i < a->size)
-	{
-		j = 0;
-		while (j < a->size)
-		{
-			if (curr->data > to_check->data)
-				index_tab[i]++;
-			to_check = to_check->next;
-			j++;
-		}
-		curr = curr->next;
-		i++;
-	}
-	a->index_tab = index_tab;
 	return (_SUCCESS_);
 }

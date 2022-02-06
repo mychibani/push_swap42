@@ -8,6 +8,7 @@ typedef struct s_list		t_list;
 struct s_stack
 {
 	int	data;
+	int index;
 
 	t_stack *prev;
 	t_stack *next;
@@ -18,13 +19,6 @@ struct s_data
 	t_stack		*head;
 	size_t		size;
 	char		*string;
-	int			*index_tab;
-};
-
-struct s_list
-{
-	void	*content;
-	t_list	*next;
 };
 
 enum	e_op
@@ -42,8 +36,8 @@ enum	e_op
 };
 
 //init
-t_data		*_init_stacks_(t_data **a, t_data **b);
-int			_sorting_prep_(t_data *a)
+int			_init_stacks_(t_data **a, t_data **b);
+int			_sorting_prep_(t_data *a);
 int			_init_(t_data *a);
 int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);
@@ -69,7 +63,6 @@ t_stack		*ft_lstnew_doubly_linked(int data);
 //tests_utils
 void		ft_print_elem(t_stack *node);
 void		_print_data_(t_data *data);
-void		_clean_(t_data *a, t_data *b);
 void		_swap_(t_data *data, t_data *b);
 
 //operations
@@ -82,9 +75,18 @@ int			ra(t_data *a);
 int			rb(t_data *b);
 int			rr(t_data *a, t_data *b);
 int			rra(t_data *a);
-int			rrb(t_data *a);
+int			rrb(t_data *b);
 int			rrr(t_data *a, t_data *b);
 
 //algorithms
+void		ft_swap(int *a, int *b);
+void		ft_sort_int_tab(int *tab, int size);
+int			_sorting_prep_(t_data *a);
+int			*_init_tab_(t_data *list);
+int			get_median(int *tab, int size);
 
+//clean
+
+void		_list_clean_(t_data *list, void(*free_data)(void *));
+void		_clean_(t_data *a, t_data *b);
 #endif

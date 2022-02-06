@@ -6,7 +6,7 @@ int	rra(t_data *a)
 	return (RA);
 }
 
-int	rrb(t_data *a, t_data *b)
+int	rrb(t_data *a)
 {
 	a->head = a->head->prev;
 	return (RRB);

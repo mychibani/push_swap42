@@ -12,7 +12,7 @@ int rb(t_data *b)
     return (RB);
 }
 
-void	rrr(t_data *a, t_data *b
+int	rr(t_data *a, t_data *b)
 {
     ra(a);
     rb(b);
