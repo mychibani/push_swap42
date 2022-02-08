@@ -26,7 +26,7 @@ int	ft_check_str(char *str)
 		if (!str[i])
 			return (_ERROR_);
 		start =	i;
-		if (str[i] == '-')
+		if (str[i] == '-' && ft_isdigit(str[i + 1]))
 		 	i++;
 		while (str[i] && ft_isdigit(str[i]))
 			i++;

@@ -79,11 +79,8 @@ int			rrb(t_data *b);
 int			rrr(t_data *a, t_data *b);
 
 //algorithms
-void		ft_swap(int *a, int *b);
-void		ft_sort_int_tab(int *tab, int size);
 int			_sorting_prep_(t_data *a);
-int			*_init_tab_(t_data *list);
-int			get_median(int *tab, int size);
+int			ft_big_algo(t_data *a, t_data *b);
 
 //clean
 
