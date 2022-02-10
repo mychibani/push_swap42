@@ -81,6 +81,7 @@ int			rrr(t_data *a, t_data *b);
 //algorithms
 int			_sorting_prep_(t_data *a);
 int			ft_big_algo(t_data *a, t_data *b);
+int			ft_is_median(t_stack *elem, int median);
 
 //clean
 

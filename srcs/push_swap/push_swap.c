@@ -41,14 +41,9 @@ int	main(int ac, char **av)
 		return (_clean_(a, b), 0);
 	if (_sorting_prep_(a) == _ERROR_)
 		return (_clean_(a, b), 0);
-	_print_data_(a);
-	printf("------------------------\n");
-	_print_data_(b);
-	printf("\n\n\n\n");
 	printf("median = [%d]\n", ft_big_algo(a, b));
-	printf("\n\n\n\n");
 	_print_data_(a);
-	printf("------------------------\n");
+	printf("--------------------------\n");
 	_print_data_(b);
 	//if (_sorting_algorithms_(a, b, res))
 	// 	return (_clean_(a, b), 0);
