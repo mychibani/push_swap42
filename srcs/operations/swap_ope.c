@@ -12,6 +12,7 @@ int	sa(t_data *a)
 	temp = a->head->index;
 	a->head->index = a->head->next->index;
 	a->head->next->index = temp;
+	printf("sa\n");
 	return (SA);
 }
 
@@ -27,6 +28,7 @@ int	sb(t_data *b)
 	temp = b->head->index;
 	b->head->index = b->head->next->index;
 	b->head->next->index = temp;
+	printf("sb\n");
 	return (SB);
 }
 
@@ -34,6 +36,6 @@ int	sb(t_data *b)
 int	ss(t_data *a, t_data *b)
 {
 	sa(a);
-	sa(b);
+	sb(b);
 	return (SS);
 }

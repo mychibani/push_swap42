@@ -80,8 +80,9 @@ int			rrr(t_data *a, t_data *b);
 
 //algorithms
 int			_sorting_prep_(t_data *a);
-int			ft_big_algo(t_data *a, t_data *b);
-int			ft_is_median(t_stack *elem, int median);
+void		ft_push_to_b(t_data *a, t_data *b);
+void		sort_3(t_data *a);
+int		ft_sorting_algo(t_data *a, t_data *b);
 
 //clean
 

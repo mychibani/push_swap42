@@ -1,11 +1,34 @@
-#include "includes.h"
+ #include "includes.h"
+
+long _atol_(char *str)
+{
+	long	nbr;
+	int		i;
+	int		sign;
+
+	nbr = 0;
+	i = 0;
+	sign = 1;
+	if (str[i] == '-')
+	{
+		i++;
+		sign = -1;
+	}
+	while (str[i] > '0' && str[i] < '9')
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	if (sign == -1)
+		nbr *= -1;
+	return (nbr);
+}
 
 int	nbr_check(char *str, int size)
 {
 	long	nbr;
 
-	/*faire atol*/
-	nbr = atol(str);
+	nbr = _atol_(str);
 	if (size > _INT_SIZE_MAX || nbr > _INT_MAX_ || nbr < _INT_MIN_)
 		return (_ERROR_);
 	return (_SUCCESS_);

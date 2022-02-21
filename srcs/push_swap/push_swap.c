@@ -41,10 +41,66 @@ int	main(int ac, char **av)
 		return (_clean_(a, b), 0);
 	if (_sorting_prep_(a) == _ERROR_)
 		return (_clean_(a, b), 0);
-	printf("median = [%d]\n", ft_big_algo(a, b));
 	_print_data_(a);
-	printf("--------------------------\n");
+	printf("----------\n\n");
 	_print_data_(b);
+	ft_sorting_algo(a, b);
+	_print_data_(a);
+	printf("----------\n\n");
+	_print_data_(b);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//if (_sorting_algorithms_(a, b, res))
 	// 	return (_clean_(a, b), 0);
 	// if (_optimus_algo_(a, b))

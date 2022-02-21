@@ -22,6 +22,7 @@ int     pb(t_data *a, t_data *b)
         reinit(a, a->head->next, a->size - 1);
     }
 	ft_lstpush_front_data(b, elem);
+    printf("pb\n");
     return (PB);
 }
 
@@ -32,7 +33,7 @@ int     pa(t_data *a, t_data *b)
 	if (b->size < 1)
 		return (-1);
     if (b->size == 1)
-        reinit(a, NULL, 0);
+        reinit(b, NULL, 0);
     else
     {
         b->head->next->prev = b->head->prev;
@@ -40,6 +41,7 @@ int     pa(t_data *a, t_data *b)
         elem = b->head;
         reinit(b, b->head->next, b->size - 1);
     }
-	ft_lstpush_front_data(b, elem);
-    return (PB);
+	ft_lstpush_front_data(a, elem);
+    printf("pa\n");
+    return (PA);
 }
