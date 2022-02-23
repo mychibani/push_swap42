@@ -17,8 +17,6 @@ void		_list_clean_(t_data *list, void(*free_data)(void *))
 		free(temp);
 		i++;
 	}
-	free(list->string);
-	list->string = NULL;
 	list->head = 0;
 	list->size = 0;
 }
@@ -26,6 +24,8 @@ void		_list_clean_(t_data *list, void(*free_data)(void *))
 void _clean_(t_data *a, t_data *b)
 {
 	_list_clean_(a, free);
+	free(a->string);
+	a->string = NULL;
 	_list_clean_(b, free);
 	free(a);
 	free(b);

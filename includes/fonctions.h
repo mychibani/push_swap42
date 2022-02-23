@@ -9,6 +9,7 @@ struct s_stack
 {
 	int	data;
 	int index;
+	int	mouv;
 
 	t_stack *prev;
 	t_stack *next;

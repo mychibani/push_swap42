@@ -28,14 +28,16 @@ int	_sorting_prep_(t_data *a)
 
 void ft_push_to_b(t_data *a, t_data *b)
 {
-	int i = 0;
+	int i;
 	int	median;
+	int max;
 
+	max = a->size - 1;
 	median = a->size / 2;
-	printf("median == [%d]\n", median);
-	while (a->size > 3)
+	i = 0;
+	while (a->size > 1)
 	{
-		if (a->head->index > (int)a->size - 3)
+		if (a->head->index == max)
 			ra(a);
 		pb(a, b);
 		if (b->head->index < median)
@@ -63,29 +65,99 @@ void	sort_3(t_data *a)
 }
 
 
-int	ft_distance1(t_data *a, int nb)
+// int	a_distance_calcul(t_data *a, int pos)
+// {
+// 	int move;
+
+// 	move = 0;
+// 	if (pos > a->size / 2)
+// 	{
+// 		while (pos < a->size)
+// 			move = pos++;
+// 	}
+// 	else
+// 	{
+// 		while (pos-- >= 0)
+// 			move++;
+// 	}
+// 	return (move);
+// }
+
+// int	b_distance_calcul(t_data *b, int pos)
+// {
+// 	int move;
+
+// 	move = 0;
+// 	if (pos > (int)b->size / 2)
+// 	{
+// 		while (pos < b->size)
+// 			move = pos++;
+// 	}
+// 	else
+// 	{
+// 		while (pos-- >= 0)
+// 			move++;
+// 	}
+// 	return (move);
+// }
+
+
+int		_next_greater_(t_data *a, int to_check)
 {
-	t_stack *current;
-	size_t	count;
-	
-	count = 0;
-	current = a->head;
-	while (current->index != nb)
+	int			i;
+	t_stack		*check_index;
+
+	i = 0;
+	check_index = a->head;
+	while (i < (int)a->size)
 	{
-		current = current->next;
-		count++;
+		if (to_check < check_index->index)
+			return (check_index->index);
+		i++;
+		check_index = check_index->next;
 	}
-	return (count);
+	return (-1);
 }
+
+//void	_sorting_prep_second_part_(t_data **a, t_data **b)
+//{
+// 	int		i;
+// 	int		tmp_move;
+// 	t_stack	*elem;
+	
+// 	tmp_move = a_distance_calcul(elem, 0) + b_distance_calcul(elem, 0);
+// 	elem = (*b)->head;
+// 	i = 0;
+// 	while (i < (int)(*b)->size)
+// 	{
+// 		i++;
+// 		elem = elem->next;
+// 	}
+//}
 
 int	ft_sorting_algo(t_data *a, t_data *b)
 {
-	int	to_check;
+	t_stack *oui;
+	int	i;
 
+	i = 0;
+	if (a->size == 2)
+	{
+		sa(a);
+		return (1232131231);
+	}
 	ft_push_to_b(a, b);
- 	sort_3(a);
-	while (i < size)
-	printf("distance depuis point a == [%d]\n", ft_distance1(a, ));
+	pa(a, b);
+	oui = b->head;
+	int	majorant;
+	while (i < (int)b->size)
+	{
+		majorant = _next_greater_(a, oui->index);	
+		ft_init_nb_of_moves(&a, &b, oui, majorant);
+		//do_best_push(a, b);
+		i++;
+		oui = oui->next;
+	}
 	return (1);
 }
 
