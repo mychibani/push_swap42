@@ -4,6 +4,7 @@
 typedef struct s_stack		t_stack;
 typedef struct s_data		t_data;
 typedef struct s_list		t_list;
+typedef struct s_op			t_op;
 
 struct s_stack
 {
@@ -20,6 +21,14 @@ struct s_data
 	t_stack		*head;
 	size_t		size;
 	char		*string;
+};
+
+struct s_op
+{
+	int rra;
+	int rrb;
+	int ra;
+	int rb;
 };
 
 enum	e_op

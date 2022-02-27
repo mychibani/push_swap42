@@ -46,7 +46,6 @@ void ft_push_to_b(t_data *a, t_data *b)
 	}
 }
 
-
 void	sort_3(t_data *a)
 {
 	int elem0;
@@ -64,106 +63,122 @@ void	sort_3(t_data *a)
 		sa(a);
 }
 
-
-// int	a_distance_calcul(t_data *a, int pos)
-// {
-// 	int move;
-
-// 	move = 0;
-// 	if (pos > a->size / 2)
-// 	{
-// 		while (pos < a->size)
-// 			move = pos++;
-// 	}
-// 	else
-// 	{
-// 		while (pos-- >= 0)
-// 			move++;
-// 	}
-// 	return (move);
-// }
-
-// int	b_distance_calcul(t_data *b, int pos)
-// {
-// 	int move;
-
-// 	move = 0;
-// 	if (pos > (int)b->size / 2)
-// 	{
-// 		while (pos < b->size)
-// 			move = pos++;
-// 	}
-// 	else
-// 	{
-// 		while (pos-- >= 0)
-// 			move++;
-// 	}
-// 	return (move);
-// }
-
-
-int		_next_greater_(t_data *a, int to_check)
+int		_next_greater_(t_data *a, int to_check, int *pos_a, int max, t_op *op)
 {
 	int			i;
+	int			temp;
+	int			sign;
 	t_stack		*check_index;
 
 	i = 0;
+	sign = 1;
 	check_index = a->head;
+	temp = max;
 	while (i < (int)a->size)
 	{
-		if (to_check < check_index->index)
-			return (check_index->index);
+		if (to_check < check_index->index && temp >= check_index->index)
+		{
+			if (i > (int)a->size / 2)
+				*pos_a = a->size - i;
+			else
+			{
+				*pos_a = i;
+				sign *= -1;
+			}
+			temp = check_index->index;
+		}
 		i++;
 		check_index = check_index->next;
 	}
-	return (-1);
+	if (sign < 0)
+		op->ra = *pos_a;
+	else
+		op->rra = *pos_a;
+	return (temp);
 }
 
-//void	_sorting_prep_second_part_(t_data **a, t_data **b)
-//{
-// 	int		i;
-// 	int		tmp_move;
-// 	t_stack	*elem;
-	
-// 	tmp_move = a_distance_calcul(elem, 0) + b_distance_calcul(elem, 0);
-// 	elem = (*b)->head;
-// 	i = 0;
-// 	while (i < (int)(*b)->size)
-// 	{
-// 		i++;
-// 		elem = elem->next;
-// 	}
-//}
+void	reinit_op(t_op **new)
+{
+	(*new)->rra = 0;
+	(*new)->rrb = 0;
+	(*new)->ra = 0;
+	(*new)->rb = 0;
+}
+
+void	_rotate_stacks_(t_data *a, t_data *b, t_op *op)
+{
+	while (op->ra-- && op->rb--)
+		rr(a, b);
+	while (op->rra-- && op->rrb--)
+		rrr(a, b);
+	while (op->ra--)
+		ra(a);
+	while (op->rb--)
+		rb(a);
+}
 
 int	ft_sorting_algo(t_data *a, t_data *b)
 {
-	t_stack *oui;
-	int	i;
+	t_stack *current;
+	t_op	*op;
+	int		i;
+	int		pos_a;
+	int		pos_b;
+	int		max;
+	int		sign;
 
 	i = 0;
-	if (a->size == 2)
-	{
-		sa(a);
-		return (1232131231);
-	}
+	sign = 1;
+	op = malloc(sizeof(t_op));
+	if (!op)
+		return (-1);
+	reinit_op(&op);
 	ft_push_to_b(a, b);
+	max = a->head->index;
 	pa(a, b);
-	oui = b->head;
-	int	majorant;
-	while (i < (int)b->size)
+	current = b->head;
+	while (b->size > 1)
 	{
-		majorant = _next_greater_(a, oui->index);	
-		ft_init_nb_of_moves(&a, &b, oui, majorant);
-		//do_best_push(a, b);
-		i++;
-		oui = oui->next;
+		while (i < (int)b->size)
+		{
+			_next_greater_(a, current->index, &pos_a, max, op);
+			if (i > (int)b->size / 2)
+				pos_b = b->size - i;
+			else
+				pos_b = i;
+				sign *= -1;
+			i++;
+			current = current->next;
+			if (sign < 0)
+				op->rrb = pos_b;
+			else
+				op->rb = pos_b;
+			_rotate_stacks_(a, b, op);
+			reinit_op(&op);
+		}
+		pa(a, b);
 	}
-	return (1);
+	free(op);
+	//do_best_push(a, b);
+	return (pos_b);
 }
 
+// int temp;
 
+// int nbr;
+// int i;
+// t_op op;
 
+// while (i stack b)
+// {
+// 	///count operation
+// 	(if (temp > op.rra + op.rrb + o.ra + op.rb))
+// 		temp = addition
+// 		index = nbr;
+// 	//ft_init_nb_of_moves(&a, &b);
+// }
 
+// insert(nbr)
 
 
 
@@ -227,9 +242,10 @@ int	ft_sorting_algo(t_data *a, t_data *b)
 
 // int	_sorting_algorithms_(t_data *a, t_data *b, t_stack *res)
 // {
-// 	if (a->size < 3)
-// 		_small_sort_(a, res);
-// 	else
-// 		_bigi_sort_(a, b, res);
-// 	return (res);
-// }
+// 	if (a->size == 2)
+// 		return (sa(a));
+//  	else if (a->size < 3)
+//  		return (_small_sort_(a, res));
+//  	else
+//  		return (_bigi_sort_(a, b, res));
+//  }
