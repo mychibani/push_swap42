@@ -27,3 +27,11 @@ void		_print_data_(t_data *data)
 		i++;
 	}
 }
+
+void		_print_op_(t_op *op)
+{
+	printf("RA NBR [%d]\n", op->ra);
+	printf("RB NBR [%d]\n", op->rb);
+	printf("RRA NBR [%d]\n", op->rra);
+	printf("RRB NBR [%d]\n", op->rrb);
+}

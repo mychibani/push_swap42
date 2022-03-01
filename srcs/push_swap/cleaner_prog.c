@@ -21,12 +21,13 @@ void		_list_clean_(t_data *list, void(*free_data)(void *))
 	list->size = 0;
 }
 
-void _clean_(t_data *a, t_data *b)
+void _clean_(t_data *a, t_data *b, t_op *op)
 {
 	_list_clean_(a, free);
 	free(a->string);
 	a->string = NULL;
 	_list_clean_(b, free);
+	free(op);
 	free(a);
 	free(b);
 }

@@ -3,7 +3,6 @@
 
 typedef struct s_stack		t_stack;
 typedef struct s_data		t_data;
-typedef struct s_list		t_list;
 typedef struct s_op			t_op;
 
 struct s_stack
@@ -46,13 +45,14 @@ enum	e_op
 };
 
 //init
-int			_init_stacks_(t_data **a, t_data **b);
+int			_init_stacks_(t_data **a, t_data **b, t_op **op);
 int			_sorting_prep_(t_data *a);
 int			_init_(t_data *a);
 int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);
 int			*_init_index_tab(int size);
 int			_index_sort(t_data *a);
+void		reinit_op(t_op **new);
 
 //parsing
 int			_parse_(int ac, char **av, t_data *prog);
@@ -74,6 +74,7 @@ t_stack		*ft_lstnew_doubly_linked(int data);
 void		ft_print_elem(t_stack *node);
 void		_print_data_(t_data *data);
 void		_swap_(t_data *data, t_data *b);
+void		_print_op_(t_op *op);
 
 //operations
 int			pb(t_data *a, t_data *b);
@@ -92,10 +93,11 @@ int			rrr(t_data *a, t_data *b);
 int			_sorting_prep_(t_data *a);
 void		ft_push_to_b(t_data *a, t_data *b);
 void		sort_3(t_data *a);
-int		ft_sorting_algo(t_data *a, t_data *b);
+int			ft_sorting_algo(t_data *a, t_data *b, t_op *op);
 
 //clean
 
-void		_list_clean_(t_data *list, void(*free_data)(void *));
-void		_clean_(t_data *a, t_data *b);
+void		_list_clean_(t_data *list, void	(*free_data)(void *));
+void		_clean_(t_data *a, t_data *b, t_op *op);
+
 #endif

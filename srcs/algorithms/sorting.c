@@ -63,15 +63,13 @@ void	sort_3(t_data *a)
 		sa(a);
 }
 
-int		_next_greater_(t_data *a, int to_check, int *pos_a, int max, t_op *op)
+void	_next_greater_(t_data *a, int to_check, int max, t_op *op)
 {
 	int			i;
 	int			temp;
-	int			sign;
 	t_stack		*check_index;
 
 	i = 0;
-	sign = 1;
 	check_index = a->head;
 	temp = max;
 	while (i < (int)a->size)
@@ -79,22 +77,14 @@ int		_next_greater_(t_data *a, int to_check, int *pos_a, int max, t_op *op)
 		if (to_check < check_index->index && temp >= check_index->index)
 		{
 			if (i > (int)a->size / 2)
-				*pos_a = a->size - i;
+				op->rra = a->size - i;
 			else
-			{
-				*pos_a = i;
-				sign *= -1;
-			}
+				op->ra = i;
 			temp = check_index->index;
 		}
 		i++;
 		check_index = check_index->next;
 	}
-	if (sign < 0)
-		op->ra = *pos_a;
-	else
-		op->rra = *pos_a;
-	return (temp);
 }
 
 void	reinit_op(t_op **new)
@@ -117,22 +107,15 @@ void	_rotate_stacks_(t_data *a, t_data *b, t_op *op)
 		rb(a);
 }
 
-int	ft_sorting_algo(t_data *a, t_data *b)
+int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 {
 	t_stack *current;
-	t_op	*op;
+	t_op	*min_move;
+	int		temp;
 	int		i;
-	int		pos_a;
-	int		pos_b;
 	int		max;
-	int		sign;
 
 	i = 0;
-	sign = 1;
-	op = malloc(sizeof(t_op));
-	if (!op)
-		return (-1);
-	reinit_op(&op);
 	ft_push_to_b(a, b);
 	max = a->head->index;
 	pa(a, b);
@@ -141,26 +124,24 @@ int	ft_sorting_algo(t_data *a, t_data *b)
 	{
 		while (i < (int)b->size)
 		{
-			_next_greater_(a, current->index, &pos_a, max, op);
+			_next_greater_(a, current->index, max, op);
 			if (i > (int)b->size / 2)
-				pos_b = b->size - i;
+				op->rrb = b->size - i;
 			else
-				pos_b = i;
-				sign *= -1;
-			i++;
+				(*op)->rb = i;
 			current = current->next;
-			if (sign < 0)
-				op->rrb = pos_b;
-			else
-				op->rb = pos_b;
-			_rotate_stacks_(a, b, op);
-			reinit_op(&op);
+			if (temp > op->ra + op->rb + op->rb + op->rra + op->rrb)
+			{
+				temp = op->ra + op->rb + op->ra + op->rra + op->rrb;
+				min_move = (*op);
+			}
+			i++;
 		}
+		_print_op_(op);
+		// _rotate_stacks_(a, b, op);
 		pa(a, b);
 	}
-	free(op);
-	//do_best_push(a, b);
-	return (pos_b);
+	return (1);
 }
 
 // int temp;
