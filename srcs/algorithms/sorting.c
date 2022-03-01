@@ -95,22 +95,36 @@ void	reinit_op(t_op **new)
 	(*new)->rb = 0;
 }
 
-void	_rotate_stacks_(t_data *a, t_data *b, t_op *op)
+void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
 {
-	while (op->ra-- && op->rb--)
+	while ((*op)->ra && (*op)->rb)
+	{
 		rr(a, b);
-	while (op->rra-- && op->rrb--)
+		(*op)->ra--;
+		(*op)->rb--;
+	}
+	while ((*op)->rra && (*op)->rrb)
+	{
 		rrr(a, b);
-	while (op->ra--)
+		(*op)->rra--;
+		(*op)->rrb--;
+	}
+	while ((*op)->ra)
+	{
 		ra(a);
-	while (op->rb--)
+		(*op)->ra--;
+	}
+	while ((*op)->rb)
+	{
 		rb(a);
+		(*op)->rb--;
+	}
 }
 
 int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 {
 	t_stack *current;
-	t_op	*min_move;
+	// t_op	*min_move;
 	int		temp;
 	int		i;
 	int		max;
@@ -120,27 +134,30 @@ int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 	max = a->head->index;
 	pa(a, b);
 	current = b->head;
-	while (b->size > 1)
-	{
+	temp = _INT_MAX_;
+	// while (b->size > 1)
+	// {
 		while (i < (int)b->size)
 		{
 			_next_greater_(a, current->index, max, op);
 			if (i > (int)b->size / 2)
+			{
+				op->rb = 0;
 				op->rrb = b->size - i;
+			}
 			else
-				(*op)->rb = i;
+				op->rb = i;
 			current = current->next;
 			if (temp > op->ra + op->rb + op->rb + op->rra + op->rrb)
 			{
 				temp = op->ra + op->rb + op->ra + op->rra + op->rrb;
-				min_move = (*op);
+				//min_move = op;
 			}
 			i++;
 		}
 		_print_op_(op);
-		// _rotate_stacks_(a, b, op);
-		pa(a, b);
-	}
+		// _rotate_stacks_(a, b, &min_move);
+	// }
 	return (1);
 }
 
