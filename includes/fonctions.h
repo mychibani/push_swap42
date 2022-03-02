@@ -94,6 +94,7 @@ int			_sorting_prep_(t_data *a);
 void		ft_push_to_b(t_data *a, t_data *b);
 void		sort_3(t_data *a);
 int			ft_sorting_algo(t_data *a, t_data *b, t_op *op);
+void		_next_greater_(t_data *a, int to_check, int max, t_op **op);
 
 //clean
 

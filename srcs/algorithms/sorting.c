@@ -63,7 +63,7 @@ void	sort_3(t_data *a)
 		sa(a);
 }
 
-void	_next_greater_(t_data *a, int to_check, int max, t_op *op)
+void	_next_greater_(t_data *a, int to_check, int max, t_op **op)
 {
 	int			i;
 	int			temp;
@@ -76,10 +76,16 @@ void	_next_greater_(t_data *a, int to_check, int max, t_op *op)
 	{
 		if (to_check < check_index->index && temp >= check_index->index)
 		{
-			if (i > (int)a->size / 2)
-				op->rra = a->size - i;
+			if (i < (int)a->size / 2)
+			{
+				(*op)->ra = i; // positision avant la moitie de A
+				(*op)->rra = 0; // nombre de rra de 0;
+			}
 			else
-				op->ra = i;
+			{
+				(*op)->rra = a->size - i;
+				(*op)->ra = 0;
+			}
 			temp = check_index->index;
 		}
 		i++;
@@ -121,10 +127,15 @@ void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
 	}
 }
 
+int	_sum_op_(t_op *op)
+{
+	return (op->ra + op->rb + op->rra + op->rrb);
+}
+
 int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 {
 	t_stack *current;
-	// t_op	*min_move;
+	t_op	*min_move;
 	int		temp;
 	int		i;
 	int		max;
@@ -135,29 +146,37 @@ int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 	pa(a, b);
 	current = b->head;
 	temp = _INT_MAX_;
-	// while (b->size > 1)
-	// {
+	reinit_op(&min_move);
+	_print_data_(a);
+	_print_data_(b);
+	while (b->size > 1)
+	{
 		while (i < (int)b->size)
 		{
-			_next_greater_(a, current->index, max, op);
+			_next_greater_(a, current->index, max, &op);
 			if (i > (int)b->size / 2)
 			{
 				op->rb = 0;
 				op->rrb = b->size - i;
 			}
 			else
-				op->rb = i;
-			current = current->next;
-			if (temp > op->ra + op->rb + op->rb + op->rra + op->rrb)
 			{
-				temp = op->ra + op->rb + op->ra + op->rra + op->rrb;
-				//min_move = op;
+				op->rb = i;
+				op->rrb = 0;
+			}
+			current = current->next;
+			if (temp > _sum_op_(op))
+			{
+				temp = _sum_op_(op);
+				min_move = op;
 			}
 			i++;
 		}
-		_print_op_(op);
-		// _rotate_stacks_(a, b, &min_move);
-	// }
+		i = 0;
+		current = b->head;
+		_rotate_stacks_(a, b, &min_move);
+		pa(a, b);
+	}
 	return (1);
 }
 
