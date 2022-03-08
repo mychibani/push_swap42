@@ -12,7 +12,9 @@ SRCS_OPE		=		srcs/operations/swap_ope.c		\
 
 
 SRCS_ALGO		=		srcs/algorithms/sorting.c		\
-					srcs/algorithms/main_algo.c
+					srcs/algorithms/main_algo.c			\
+					srcs/algorithms/sorting_utils.c		\
+					srcs/algorithms/sorting_prep.c 
 
 SRCS_UTILS		=		srcs/utils/ft_lstadd_back_data.c	\
 					srcs/utils/ft_lstpush_front_data.c	\

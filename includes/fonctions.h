@@ -9,7 +9,6 @@ struct s_stack
 {
 	int	data;
 	int index;
-	int	mouv;
 
 	t_stack *prev;
 	t_stack *next;
@@ -24,10 +23,15 @@ struct s_data
 
 struct s_op
 {
+	int pos_a;
+	int pos_b;
+	int	rrr;
+	int	rr;
 	int rra;
 	int rrb;
 	int ra;
 	int rb;
+	int max_op;
 };
 
 enum	e_op
@@ -44,6 +48,14 @@ enum	e_op
 	RRR,
 };
 
+enum	e_direction
+{
+	BOTH_DOWN,
+	BOTH_UP,
+	A_UP,
+	B_UP,
+};
+
 //init
 int			_init_stacks_(t_data **a, t_data **b, t_op **op);
 int			_sorting_prep_(t_data *a);
@@ -52,7 +64,7 @@ int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);
 int			*_init_index_tab(int size);
 int			_index_sort(t_data *a);
-void		reinit_op(t_op **new);
+t_op		*reinit_op(void);
 
 //parsing
 int			_parse_(int ac, char **av, t_data *prog);
@@ -82,19 +94,24 @@ int			pa(t_data *a, t_data *b);
 int			sa(t_data *a);
 int			sb(t_data *b);
 int			ss(t_data *a, t_data *b);
-int			ra(t_data *a);
-int			rb(t_data *b);
-int			rr(t_data *a, t_data *b);
-int			rra(t_data *a);
-int			rrb(t_data *b);
-int			rrr(t_data *a, t_data *b);
+int			ra(t_data *a, char *str);
+int			rb(t_data *b, char *str);
+int			rr(t_data *a, t_data *b, char *str);
+int			rra(t_data *a, char *str);
+int			rrb(t_data *b, char *str);
+int			rrr(t_data *a, t_data *b, char *str);
 
 //algorithms
 int			_sorting_prep_(t_data *a);
-void		ft_push_to_b(t_data *a, t_data *b);
-void		sort_3(t_data *a);
+void		_algo_prep_(t_data *a, t_data *b);
+void		_sort_3_(t_data *a);
 int			ft_sorting_algo(t_data *a, t_data *b, t_op *op);
-void		_next_greater_(t_data *a, int to_check, int max, t_op **op);
+void		_next_greater_(t_data *a, int to_check, int pos_b, t_op **op);
+
+//algo_utils
+
+int			_find_max_(t_data *stack);
+int			_sum_op_(t_op *op)
 
 //clean
 

@@ -10,7 +10,9 @@ int     pb(t_data *a, t_data *b)
 {
     t_stack *elem;
 
-    elem = NULL;
+    if (!a->size)
+        return (PB);
+    elem = a->head;
     if (a->size == 1)
         reinit(a, NULL, 0);
     else
@@ -20,8 +22,11 @@ int     pb(t_data *a, t_data *b)
         elem = a->head;
         reinit(a, a->head->next, a->size - 1);
     }
-	ft_lstpush_front_data(b, elem);
-    printf("pb\n");
+    if (a->size)
+	    ft_lstpush_front_data(b, elem);
+    else
+        reinit(b, elem, 1);
+    ft_putstr_fd("pb\n", 1);
     return (PB);
 }
 
@@ -29,7 +34,9 @@ int     pa(t_data *a, t_data *b)
 {
     t_stack *elem;
 
-    elem = NULL;
+    if (!b->size)
+        return (PA);
+    elem = b->head;
     if (b->size == 1)
         reinit(b, NULL, 0);
     else
@@ -39,7 +46,10 @@ int     pa(t_data *a, t_data *b)
         elem = b->head;
         reinit(b, b->head->next, b->size - 1);
     }
-	ft_lstpush_front_data(a, elem);
-    printf("pa\n");
+    if (a->size)
+	    ft_lstpush_front_data(a, elem);
+    else
+        reinit (a, elem, 1);
+    ft_putstr_fd("pa\n", 1);
     return (PA);
 }

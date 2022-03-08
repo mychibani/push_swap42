@@ -1,23 +1,25 @@
 #include "includes.h"
 
-int	rra(t_data *a)
+int	rra(t_data *a, char *str)
 {
-	printf("rra\n");
-	a->head = a->head->prev;
+	if (a->size > 1)
+		a->head = a->head->prev;
+	ft_putstr_fd(str, 1);
 	return (RRA);
 }
 
-int	rrb(t_data *b)
+int	rrb(t_data *b, char *str)
 {
-	printf("rrb\n");
-	b->head = b->head->prev;
+	if (b->size > 1)
+		b->head = b->head->prev;
+	ft_putstr_fd(str, 1);
 	return (RRB);
 }
 
-int	rrr(t_data *a, t_data *b)
+int	rrr(t_data *a, t_data *b, char *str)
 {
-	printf("rrr\n");
-	rra(a);
-	rrb(b);
+	rra(a, "");
+	rrb(b, "");
+	ft_putstr_fd(str, 1);
 	return (RRR);
 }

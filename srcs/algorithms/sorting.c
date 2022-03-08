@@ -1,225 +1,201 @@
 #include "includes.h"
 
-int	_sorting_prep_(t_data *a)
+
+t_op	*reinit_op(void)
 {
-	t_stack *curr;
-	t_stack *to_check;
-	size_t i;
-	size_t j;
+	t_op *new;
+
+	new = NULL;
+	new = (t_op *)malloc(sizeof(t_op));
+	if (!new)
+		return (NULL);
+	new->rr = 0;
+	new->rrr = 0;
+	new->rra = 0;
+	new->rrb = 0;
+	new->ra = 0;
+	new->rb = 0;
+	new->pos_a = 0;
+	new->pos_b = 0;
+	new->max_op = _INT_MAX_;
+	return (new);
+}
+
+
+int	_find_max_(t_data *stack)
+{
+	int		i;
+	int		max_value;
+	t_stack *index;
 
 	i = 0;
-	curr = a->head;
-	to_check = curr;
-	while (i < a->size)
+	max_value = 0;
+	index = stack->head;
+	while (i < (int)stack->size)
 	{
-		j = 0;
-		while (j < a->size)
-		{
-			if (curr->data > to_check->data)
-				curr->index++;
-			to_check = to_check->next;
-			j++;
-		}
-		curr = curr->next;
+		if (index->index > max_value)
+			max_value = index->index;
+		index = index->next;
 		i++;
 	}
-	return (_SUCCESS_);
+	return (max_value);
 }
 
-void ft_push_to_b(t_data *a, t_data *b)
-{
-	int i;
-	int	median;
-	int max;
 
-	max = a->size - 1;
-	median = a->size / 2;
-	i = 0;
-	while (a->size > 1)
-	{
-		if (a->head->index == max)
-			ra(a);
-		pb(a, b);
-		if (b->head->index < median)
-			rb(b);
-		i++;
-	}
+int		calcul_choice(int x, int y)
+{
+	if (x > y)
+		return (x);
+	return (y);
 }
 
-void	sort_3(t_data *a)
-{
-	int elem0;
-	int elem1;
-	int elem2;
 
-	elem0 = a->head->index;
-	elem1 = a->head->next->index;
-	elem2 = a->head->next->next->index;
-	if (elem0 > elem1 && elem0 > elem2)
-		ra(a);
-	else if (elem0 < elem1 && elem1 > elem2)
-		rra(a);
-	if (a->head->index > a->head->next->index)
-		sa(a);
+// int _full_calcul()
+// {
+// 		t_op	*final_move;
+// 		if (sum_count < )
+// 			final_move = 
+// 		test1()
+// 		test2()
+// 		test3()
+// 		test4()
+// 		return (op);
+// }
+
+int	difference(int x, int y)
+{
+	return (x - y);
 }
 
-void	_next_greater_(t_data *a, int to_check, int max, t_op **op)
+int	addition(int x, int y)
 {
-	int			i;
-	int			temp;
-	t_stack		*check_index;
-
-	i = 0;
-	check_index = a->head;
-	temp = max;
-	while (i < (int)a->size)
-	{
-		if (to_check < check_index->index && temp >= check_index->index)
-		{
-			if (i < (int)a->size / 2)
-			{
-				(*op)->ra = i; // positision avant la moitie de A
-				(*op)->rra = 0; // nombre de rra de 0;
-			}
-			else
-			{
-				(*op)->rra = a->size - i;
-				(*op)->ra = 0;
-			}
-			temp = check_index->index;
-		}
-		i++;
-		check_index = check_index->next;
-	}
+	return (x + y);
 }
 
-void	reinit_op(t_op **new)
+void	test_one(t_op **op)
 {
-	(*new)->rra = 0;
-	(*new)->rrb = 0;
-	(*new)->ra = 0;
-	(*new)->rb = 0;
+	int	temp;
+
+	if ((*op)->pos_a > (*op)->pos_b)
+		temp = (*op)->pos_b;
+	else
+		temp = (*op)->pos_a;
+	if (difference((*op)->pos_a, (*op)->pos_b) > 0)
+	{
+		(*op)->ra = difference((*op)->pos_a, (*op)->pos_b);
+		(*op)->rb = 0;
+	}
+	else
+	{
+		(*op)->rb = difference((*op)->pos_a, (*op)->pos_b);
+		(*op)->ra = 0;
+	}
+	(*op)->rr = temp;
+	(*op)->rra = 0;
+	(*op)->rrb = 0;
+	(*op)->rrr = 0;
+	(*op)->max_op = _sum_op_(op);
 }
 
-void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
+void	test_two(t_op **op, t_data *a, t_data *b)
 {
-	while ((*op)->ra && (*op)->rb)
+	int	rrr;
+	int rra;
+	int rrb;
+
+	rra = a->size - (*op)->pos_a;
+	rrb = b->size - (*op)->pos_b;
+	if (rra > rrb)
+		rrr = difference(rrb, rra);
+	else
+		rrr = difference(rra, rrb);
+	if (difference(rra, rrb > 0))
 	{
-		rr(a, b);
-		(*op)->ra--;
-		(*op)->rb--;
+		(*op)->rra = difference(rra, rrb);
+		(*op)->rrb = 0;
 	}
-	while ((*op)->rra && (*op)->rrb)
+	else
 	{
-		rrr(a, b);
-		(*op)->rra--;
-		(*op)->rrb--;
+		(*op)->rrb = difference(rrb, rra);
+		(*op)->rra = 0;
 	}
-	while ((*op)->ra)
-	{
-		ra(a);
-		(*op)->ra--;
-	}
-	while ((*op)->rb)
-	{
-		rb(a);
-		(*op)->rb--;
-	}
+	(*op)->rrr = rrr;
+	(*op)->ra = 0;
+	(*op)->rb = 0;
+	(*op)->rr = 0;
+	(*op)->max_op = _sum_op_(op);
 }
 
-int	_sum_op_(t_op *op)
+void	test_three(t_op **op, t_data *b)
 {
-	return (op->ra + op->rb + op->rra + op->rrb);
+	(*op)->ra = (*op)->pos_a;
+	(*op)->rb = 0;
+	(*op)->rra = 0;
+	(*op)->rrb = b->size - (*op)->pos_b;
+	(*op)->rrr = 0;
+	(*op)->rr = 0;
+	(*op)->max_op = _sum_op_(op);
+}
+
+void	test_four(t_op **op, t_data *a)
+{
+	(*op)->ra = 0;
+	(*op)->rb = (*op)->pos_b;
+	(*op)->rra = a->size - (*op)->pos_a;
+	(*op)->rrb = 0;
+	(*op)->rrr = 0;
+	(*op)->rr = 0;
+	(*op)->max_op = _sum_op_(op);
+}
+
+t_op *all_case(t_data *a, t_data *b, t_op **op)
+{
+	t_op *best_case;
+
+	best_case = reinit_op();
+	test_one(op);
+	if (best_case->max_op > (*op)->max_op)
+		best_case = *op;
+	test_two(op, a, b);
+	if (best_case->max_op > (*op)->max_op)
+		best_case = *op;
+	test_three(op, b);
+	if (best_case->max_op > (*op)->max_op)
+		best_case = *op;
+	test_four(op, a);
+	if (best_case->max_op > (*op)->max_op)
+		best_case = *op;
+	return (best_case);
 }
 
 int	ft_sorting_algo(t_data *a, t_data *b, t_op *op)
 {
 	t_stack *current;
-	t_op	*min_move;
-	int		temp;
+	t_op	*final_move;
 	int		i;
-	int		max;
 
 	i = 0;
-	ft_push_to_b(a, b);
-	max = a->head->index;
-	pa(a, b);
+	final_move = reinit_op();
+	_algo_prep_(a, b);
 	current = b->head;
-	temp = _INT_MAX_;
-	reinit_op(&min_move);
-	_print_data_(a);
-	_print_data_(b);
-	while (b->size > 1)
+	while (b->size > 0)
 	{
 		while (i < (int)b->size)
 		{
-			_next_greater_(a, current->index, max, &op);
-			if (i > (int)b->size / 2)
-			{
-				op->rb = 0;
-				op->rrb = b->size - i;
-			}
-			else
-			{
-				op->rb = i;
-				op->rrb = 0;
-			}
-			current = current->next;
-			if (temp > _sum_op_(op))
-			{
-				temp = _sum_op_(op);
-				min_move = op;
-			}
+			_next_greater_(a, current->index, i, &op);
+			final_move = all_case(a, b, &op);
+			if (final_move > op->max_op)
+				final_move = op;
 			i++;
+			current = current->next;
 		}
+		_rotate_(a, b, &final_move);
+		pa(a, b);
 		i = 0;
 		current = b->head;
-		_rotate_stacks_(a, b, &min_move);
-		pa(a, b);
-	}
-	return (1);
+	}	
+	return (_SUCCESS_);
 }
-
-// int temp;
-
-// int nbr;
-// int i;
-// t_op op;
-
-// while (i stack b)
-// {
-// 	///count operation
-// 	(if (temp > op.rra + op.rrb + o.ra + op.rb))
-// 		temp = addition
-// 		index = nbr;
-// 	//ft_init_nb_of_moves(&a, &b);
-// }
-
-// insert(nbr)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
