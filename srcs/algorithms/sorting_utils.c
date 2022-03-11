@@ -14,10 +14,7 @@ void	_next_greater_(t_data *a, int to_check, int pos_b, t_op **op)
 	{
 		if (to_check < check_index->index && temp >= check_index->index)
 		{
-			if (i < a->size / 2)
-				(*op)->pos_a = i;
-			else
-				(*op)->pos_a = a->size / 2;
+			(*op)->pos_a = i;
 			temp = check_index->index;
 		}
 		i++;
@@ -28,12 +25,6 @@ void	_next_greater_(t_data *a, int to_check, int pos_b, t_op **op)
 
 void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
 {
-	while ((*op)->ra && (*op)->rb)
-	{
-		rr(a, b, "rr\n");
-		(*op)->ra--;
-		(*op)->rb--;
-	}
 	while ((*op)->ra)
 	{
 		ra(a, "ra\n");
@@ -48,12 +39,6 @@ void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
 
 void	_reverse_rotate_stacks(t_data *a, t_data *b, t_op **op)
 {
-	while ((*op)->rra && (*op)->rrb)
-	{
-		rrr(a, b, "rrr\n");
-		(*op)->rra--;
-		(*op)->rrb--;
-	}
 	while((*op)->rra)
 	{
 		rra(a, "rra\n");
@@ -72,6 +57,8 @@ void	_rotate_both_stacks(t_data *a, t_data *b, t_op **op)
 	{
 		rrr(a, b, "rrr\n");
 			(*op)->rrr--;
+		(*op)->rra--;
+		(*op)->rrb--;
 	}
 	while ((*op)->rr)
 	{

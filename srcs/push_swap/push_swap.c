@@ -12,19 +12,17 @@
 
 #include "includes.h"
 
-int	_init_stacks_(t_data **a, t_data **b, t_op **op)
+int	_init_stacks_(t_data **a, t_data **b)
 {
 
 	*a = (t_data *)malloc(sizeof(t_data));
 	*b = (t_data *)malloc(sizeof(t_data));
-	*op = (t_op *)malloc(sizeof(t_op));
-	if (!a || !b || !op)
+	if (!a || !b)
 		return (_ERROR_);
 	(*a)->size = 0;
 	(*a)->head = NULL;
 	(*b)->size = 0;
 	(*b)->head = NULL;
-	reinit_op(op);
 	return (_SUCCESS_);
 }
 
@@ -34,7 +32,8 @@ int	main(int ac, char **av)
 	t_data		*b;
 	t_op		*op;
 
-	if (_init_stacks_(&a, &b, &op) == _ERROR_)
+	op = init_op();
+	if (_init_stacks_(&a, &b) == _ERROR_)
 		return (0);
 	if (_parse_(ac, av, a) == _ERROR_)
 		return (_clean_(a, b, op), ft_putstr_fd("Error\n", 2));
@@ -47,18 +46,10 @@ int	main(int ac, char **av)
 	
 
 
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
-	pb(a, b);
+	ft_sorting_algo(a, b, op);
+	_print_op_(op);
 	_print_data_(a);
 	printf("----------\n\n");
 	_print_data_(b);
-	// _print_data_(a);
-	// printf("----------\n\n");
-	// _print_data_(b);
 	return (_clean_(a, b, op), 0);
 }

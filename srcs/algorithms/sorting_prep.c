@@ -32,10 +32,10 @@ void	_algo_prep_(t_data *a, t_data *b)
 	int	median;
 	int max;
 
-	max = a->size - 1;
+	max = _find_max_(a);
 	median = a->size / 2;
 	i = 0;
-	while (a->size > 3)
+	while (a->size > 1)
 	{
 		if (a->head->index == max)
 			ra(a, "ra\n");

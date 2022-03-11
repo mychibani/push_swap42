@@ -57,14 +57,15 @@ enum	e_direction
 };
 
 //init
-int			_init_stacks_(t_data **a, t_data **b, t_op **op);
+int			_init_stacks_(t_data **a, t_data **b);
 int			_sorting_prep_(t_data *a);
 int			_init_(t_data *a);
 int			_is_duplicate_elem_(t_data *a);
 int			_is_sorted_stack_(t_data *a);
 int			*_init_index_tab(int size);
 int			_index_sort(t_data *a);
-t_op		*reinit_op(void);
+void		reinit_op(t_op *new);
+t_op		*init_op(void);
 
 //parsing
 int			_parse_(int ac, char **av, t_data *prog);
@@ -107,11 +108,12 @@ void		_algo_prep_(t_data *a, t_data *b);
 void		_sort_3_(t_data *a);
 int			ft_sorting_algo(t_data *a, t_data *b, t_op *op);
 void		_next_greater_(t_data *a, int to_check, int pos_b, t_op **op);
+void		_rotate_(t_data *a, t_data *b, t_op **op);
 
 //algo_utils
 
 int			_find_max_(t_data *stack);
-int			_sum_op_(t_op *op)
+int			_sum_op_(t_op *op);
 
 //clean
 
