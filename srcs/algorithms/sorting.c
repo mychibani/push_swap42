@@ -75,6 +75,50 @@ int	b_up_and_a_down(t_data *a, t_op *op)
 	return (op->max_op);
 }
 
+int	a_and_b_up(t_op *op)
+{
+	if (op->pos_a >= op->pos_b)
+	{
+		op->ra = op->pos_a - op->pos_b;
+		op->rr = op->pos_a - op->ra;
+		op->rb = 0;
+	}
+	else
+	{
+		op->rb = op->pos_b - op->pos_a;
+		op->rr = op->pos_b - op->rb;
+		op->ra = 0;
+	}
+	op->rra = 0;
+	op->rrb = 0;
+	op->rrr = 0;
+	op->max_op = op->ra + op->rb + op->rr;
+	return (op->max_op);
+}
+
+int	a_and_b_down(t_op *op, t_data *a, t_data *b)
+{
+	op->pos_a = a->size - op->pos_a;
+	op->pos_b = b->size - op->pos_b;
+	if (op->pos_a >= op->pos_b)
+	{
+		op->rra = op->pos_a - op->pos_b;
+		op->rrr = op->pos_a - op->ra;
+		op->rrb = 0;
+	}
+	else
+	{
+		op->rrb = op->pos_b - op->pos_a;
+		op->rrr = op->pos_b - op->rb;
+		op->rra = 0;
+	}
+	op->ra = 0;
+	op->rb = 0;
+	op->rr = 0;
+	op->max_op = op->rra + op->rrb + op->rrr;
+	return (op->max_op);
+}
+
 t_op *_calcul_positions(t_data *a, t_data *b, t_op *op)
 {
 	t_op *best_case;
@@ -84,7 +128,10 @@ t_op *_calcul_positions(t_data *a, t_data *b, t_op *op)
 		a_up_and_b_down(b, op);
 	if (op->max_op > b_up_and_a_down(a, best_case))
 		b_up_and_a_down(a, op);
-	if (op->max_op > a_up_and_b_up)
+	if (op->max_op > a_and_b_up(best_case))
+		a_and_b_up(op);
+	if (op->max_op > a_and_b_down(best_case, a, b))
+		a_and_b_down(op, a, b);
 	free(best_case);
 	return (op);
 }
