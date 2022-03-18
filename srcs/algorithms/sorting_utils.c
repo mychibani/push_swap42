@@ -32,7 +32,7 @@ void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
 	}
 	while ((*op)->rb)
 	{
-		rb(a, "rb\n");
+		rb(b, "rb\n");
 		(*op)->rb--;
 	}
 }
@@ -56,25 +56,19 @@ void	_rotate_both_stacks(t_data *a, t_data *b, t_op **op)
 	while ((*op)->rrr)
 	{
 		rrr(a, b, "rrr\n");
-			(*op)->rrr--;
-		(*op)->rra--;
-		(*op)->rrb--;
+		(*op)->rrr--;
 	}
 	while ((*op)->rr)
 	{
 		rr(a, b, "rr\n");
-			(*op)->rr--;
+		(*op)->rr--;
 	}
 }
 
 void	_rotate_(t_data *a, t_data *b, t_op **op)
 {
+	_reverse_rotate_stacks(a, b, op);
 	_rotate_both_stacks(a, b, op);
 	_rotate_stacks_(a, b, op);
-	_reverse_rotate_stacks(a, b, op);
-}
-
-int	_sum_op_(t_op *op)
-{
-	return (op->ra + op->rb + op->rra + op->rrb + op->rrr + op->rr);
+	pa(a, b);
 }

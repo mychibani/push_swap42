@@ -47,9 +47,6 @@ int	main(int ac, char **av)
 
 
 	ft_sorting_algo(a, b, op);
-	_print_op_(op);
-	_print_data_(a);
-	printf("----------\n\n");
-	_print_data_(b);
+
 	return (_clean_(a, b, op), 0);
 }

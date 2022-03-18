@@ -44,6 +44,4 @@ void	_algo_prep_(t_data *a, t_data *b)
 			rb(b, "rb\n");
 		i++;
 	}
-	pa(a, b);
-	_sort_3_(a);
 }

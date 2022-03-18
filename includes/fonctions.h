@@ -119,5 +119,5 @@ int			_sum_op_(t_op *op);
 
 void		_list_clean_(t_data *list, void	(*free_data)(void *));
 void		_clean_(t_data *a, t_data *b, t_op *op);
-
+void ft_putnbr_fd(int i, int b);
 #endif
