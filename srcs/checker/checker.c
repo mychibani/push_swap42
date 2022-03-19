@@ -5,7 +5,7 @@ void    _gnl_clean_(char *str)
     free(str);
 }
 
-void    _do_prompt_instructions_(t_data *a, t_data *b)
+int    _do_prompt_instructions_(t_data *a, t_data *b)
 {
     char *str;
 
@@ -17,6 +17,7 @@ void    _do_prompt_instructions_(t_data *a, t_data *b)
         _gnl_clean_(str);
         str = gnl(0);
     }
+    return (_SUCCESS_)
 }
 
 int main(int ac, char **av)
@@ -32,5 +33,10 @@ int main(int ac, char **av)
 		return (_clean_(a, b, op), ft_putstr_fd("Error\n", 2));
 	if (_init_(a) == _ERROR_)
 		return (_clean_(a, b, op), ft_putstr_fd("Error\n", 2));
-    if (_do_op_())
+    if (_do_prompt_instructions_(a, b) == _ERROR_)
+		return (_clean_(a, b, op), ft_putstr_fd("Error\n", 2));
+    if (_is_sorted_stack_(a))
+		return (_clean_(a, b, op), ft_putstr_fd("OK", 2));
+    else
+		return (_clean_(a, b, op), ft_putstr_fd("KO", 2));
 }
