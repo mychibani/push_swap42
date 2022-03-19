@@ -26,7 +26,7 @@ int	_sorting_prep_(t_data *a)
 	return (_SUCCESS_);
 }
 
-void	_algo_prep_(t_data *a, t_data *b)
+void	_algo_prep_(t_data *a, t_data *b, size_t opti)
 {
 	int i;
 	int	median;
@@ -35,7 +35,7 @@ void	_algo_prep_(t_data *a, t_data *b)
 	max = _find_max_(a);
 	median = a->size / 2;
 	i = 0;
-	while (a->size > 1)
+	while (a->size > opti)
 	{
 		if (a->head->index == max)
 			ra(a, "ra\n");

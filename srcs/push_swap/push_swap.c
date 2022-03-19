@@ -43,10 +43,7 @@ int	main(int ac, char **av)
 		return (_clean_(a, b, op), 0);
 	if (_sorting_prep_(a) == _ERROR_)
 		return (_clean_(a, b, op), 0);
-	
-
-
-	ft_sorting_algo(a, b, op);
-
+	if (_sorting_algorithms_(a, b, op) == _SUCCESS_)	
+		return (_clean_(a, b, op), 0);
 	return (_clean_(a, b, op), 0);
 }

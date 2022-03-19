@@ -1,30 +1,35 @@
-SRCS_SWAP		=		srcs/push_swap/push_swap.c		\
+SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
 					srcs/push_swap/parsing.c		\
 					srcs/push_swap/init.c			\
-					srcs/push_swap/tests_utils.c		\
-					srcs/push_swap/cleaner_prog.c 		\
+					srcs/push_swap/tests_utils.c	\
+					srcs/push_swap/cleaner_prog.c
 
 
-SRCS_OPE		=		srcs/operations/swap_ope.c		\
+SRCS_OPE		=	srcs/operations/swap_ope.c		\
 					srcs/operations/push_ope.c		\
 					srcs/operations/reverse_rotate_ope.c	\
-					srcs/operations/rotate_ope.c		\
+					srcs/operations/rotate_ope.c
 
 
-SRCS_ALGO		=		srcs/algorithms/sorting.c		\
-					srcs/algorithms/main_algo.c			\
-					srcs/algorithms/sorting_utils.c		\
-					srcs/algorithms/sorting_prep.c 
+SRCS_ALGO		=	srcs/algorithms/sorting.c		\
+					srcs/algorithms/main_algo.c		\
+					srcs/algorithms/sorting_utils.c	\
+					srcs/algorithms/sorting_prep.c	\
+					srcs/algorithms/sorting_finisher.c		\
+					srcs/algorithms/execute_operations.c	\
+					srcs/algorithms/find_best_option.c		\
+					srcs/algorithms/init_and_reinit_op.c
+
 
 SRCS_UTILS		=		srcs/utils/ft_lstadd_back_data.c	\
-					srcs/utils/ft_lstpush_front_data.c	\
-					srcs/utils/ft_lstpush_back_data.c	\
-					srcs/utils/ft_lstnew_doubly_linked.c	\
+					srcs/utils/ft_lstpush_front_data.c		\
+					srcs/utils/ft_lstpush_back_data.c		\
+					srcs/utils/ft_lstnew_doubly_linked.c
 
 SRCS_CHECK		=		srcs/checker/checker.c
 
 
-HEADER_FILES	=	libft.h							\
+HEADER_FILES	=	libft.h					\
 					define.h				\
 					fonctions.h				\
 					includes.h
@@ -49,7 +54,7 @@ INCS			=	-I ./includes -I libft/includes/
 
 CC				=	gcc
 
-CFLAGS			=
+CFLAGS			=	-Wall -Werror -Wextra
 
 RM				=	rm -rf
 

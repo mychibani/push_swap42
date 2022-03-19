@@ -1,11 +1,6 @@
 #include "includes.h"
 
-void	_sort_2_(t_data *a)
-{
-	sa(a);
-}
-
-void	_sort_3_(t_data *a)
+int	_small_sort_(t_data *a)
 {
 	int elem0;
 	int elem1;
@@ -18,6 +13,7 @@ void	_sort_3_(t_data *a)
 		ra(a, "ra\n");
 	else if (elem0 < elem1 && elem1 > elem2)
 		rra(a, "rra\n");
-	if (a->head->index > a->head->next->index)
-	    sa(a);
+	if (!_is_sorted_stack_(a))
+	    sa(a, "sa\n");
+	return (_SUCCESS_);
 }

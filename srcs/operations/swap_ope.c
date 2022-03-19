@@ -1,6 +1,6 @@
 #include "includes.h"
 
-int	sa(t_data *a)
+int	sa(t_data *a, char *str)
 {
  	int temp;
 
@@ -12,10 +12,11 @@ int	sa(t_data *a)
 	temp = a->head->index;
 	a->head->index = a->head->next->index;
 	a->head->next->index = temp;
+	ft_putstr_fd(str, 1);
 	return (SA);
 }
 
-int	sb(t_data *b)
+int	sb(t_data *b, char *str)
 {
  	int temp;
 
@@ -27,12 +28,14 @@ int	sb(t_data *b)
 	temp = b->head->index;
 	b->head->index = b->head->next->index;
 	b->head->next->index = temp;
+	ft_putstr_fd(str, 1);
 	return (SB);
 }
 
-int	ss(t_data *a, t_data *b)
+int	ss(t_data *a, t_data *b, char *str)
 {
-	sa(a);
-	sb(b);
+	sa(a, "");
+	sb(b, "");
+	ft_putstr_fd(str, 1);
 	return (SS);
 }

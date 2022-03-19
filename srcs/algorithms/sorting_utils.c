@@ -22,53 +22,26 @@ void	_next_greater_(t_data *a, int to_check, int pos_b, t_op **op)
 	}
 }
 
-
-void	_rotate_stacks_(t_data *a, t_data *b, t_op **op)
+int	_find_max_(t_data *stack)
 {
-	while ((*op)->ra)
+	int		i;
+	int		max_value;
+	t_stack *index;
+
+	i = 0;
+	max_value = 0;
+	index = stack->head;
+	while (i < (int)stack->size)
 	{
-		ra(a, "ra\n");
-		(*op)->ra--;
+		if (index->index > max_value)
+			max_value = index->index;
+		index = index->next;
+		i++;
 	}
-	while ((*op)->rb)
-	{
-		rb(b, "rb\n");
-		(*op)->rb--;
-	}
+	return (max_value);
 }
 
-void	_reverse_rotate_stacks(t_data *a, t_data *b, t_op **op)
+int		_sum_op_(t_op *op)
 {
-	while((*op)->rra)
-	{
-		rra(a, "rra\n");
-		(*op)->rra--;
-	}
-	while((*op)->rrb)
-	{
-		rrb(b, "rrb\n");
-		(*op)->rrb--;
-	}
-}
-
-void	_rotate_both_stacks(t_data *a, t_data *b, t_op **op)
-{
-	while ((*op)->rrr)
-	{
-		rrr(a, b, "rrr\n");
-		(*op)->rrr--;
-	}
-	while ((*op)->rr)
-	{
-		rr(a, b, "rr\n");
-		(*op)->rr--;
-	}
-}
-
-void	_rotate_(t_data *a, t_data *b, t_op **op)
-{
-	_reverse_rotate_stacks(a, b, op);
-	_rotate_both_stacks(a, b, op);
-	_rotate_stacks_(a, b, op);
-	pa(a, b);
+	return (op->ra + op->rb + op->rra + op->rrb + op->rrr + op->rr);
 }

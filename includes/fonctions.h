@@ -48,14 +48,6 @@ enum	e_op
 	RRR,
 };
 
-enum	e_direction
-{
-	BOTH_DOWN,
-	BOTH_UP,
-	A_UP,
-	B_UP,
-};
-
 //init
 int			_init_stacks_(t_data **a, t_data **b);
 int			_sorting_prep_(t_data *a);
@@ -92,9 +84,9 @@ void		_print_op_(t_op *op);
 //operations
 int			pb(t_data *a, t_data *b);
 int			pa(t_data *a, t_data *b);
-int			sa(t_data *a);
-int			sb(t_data *b);
-int			ss(t_data *a, t_data *b);
+int			sa(t_data *a, char *str);
+int			sb(t_data *b, char *str);
+int			ss(t_data *a, t_data *b, char *str);
 int			ra(t_data *a, char *str);
 int			rb(t_data *b, char *str);
 int			rr(t_data *a, t_data *b, char *str);
@@ -104,11 +96,14 @@ int			rrr(t_data *a, t_data *b, char *str);
 
 //algorithms
 int			_sorting_prep_(t_data *a);
-void		_algo_prep_(t_data *a, t_data *b);
-void		_sort_3_(t_data *a);
-int			ft_sorting_algo(t_data *a, t_data *b, t_op *op);
+void		_algo_prep_(t_data *a, t_data *b, size_t opti);
+int			_small_sort_(t_data *a);
+int			_main_algorithm_(t_data *a, t_data *b, t_op *op);
 void		_next_greater_(t_data *a, int to_check, int pos_b, t_op **op);
 void		_rotate_(t_data *a, t_data *b, t_op **op);
+void		_reset_stack_(t_data *a, t_data *b, t_op *op);
+int			_calcul_positions_(t_data *a, t_data *b, t_op *op);
+int			_sorting_algorithms_(t_data *a, t_data *b, t_op *op);
 
 //algo_utils
 
@@ -119,5 +114,4 @@ int			_sum_op_(t_op *op);
 
 void		_list_clean_(t_data *list, void	(*free_data)(void *));
 void		_clean_(t_data *a, t_data *b, t_op *op);
-void ft_putnbr_fd(int i, int b);
 #endif

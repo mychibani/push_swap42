@@ -7,7 +7,6 @@ int	rra(t_data *a, char *str)
 	{
 		a->head = a->head->prev;
 		ft_putstr_fd(str, 1);
-		//write(1, "TWROITJSIUGHSUIDGHISUGBSIUGBSUIG", 12);
 	}
 	return (RRA);
 }
