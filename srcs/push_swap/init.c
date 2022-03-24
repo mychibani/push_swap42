@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 11:21:30 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 11:22:33 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes.h"
 
 int	_is_duplicate_elem_(t_data *a)
@@ -9,7 +21,7 @@ int	_is_duplicate_elem_(t_data *a)
 
 	i = 0;
 	current = a->head;
-	while(i < a->size)
+	while (i < a->size)
 	{
 		j = i + 1;
 		to_check = current->next;
@@ -29,7 +41,7 @@ int	_is_duplicate_elem_(t_data *a)
 int	_is_sorted_stack_(t_data *a)
 {
 	size_t	i;
-	t_stack *current;
+	t_stack	*current;
 
 	i = 0;
 	current = a->head;
@@ -45,7 +57,7 @@ int	_is_sorted_stack_(t_data *a)
 	return (_TRUE_);
 }
 
-int		_init_(t_data *a)
+int	_init_(t_data *a)
 {
 	size_t	i;
 	char	*res;
@@ -59,9 +71,10 @@ int		_init_(t_data *a)
 		if (!res[i])
 			break ;
 		ft_lstadd_back_data(a, (int)ft_atoi(&res[i]));
-		while (ft_isdigit(res[i]) || res[i] == '-')
+		while (ft_isdigit(res[i]) || res[i] == '-' || res[i] == '+')
 			i++;
 	}
+	free(a->string);
 	if (_is_duplicate_elem_(a))
 		return (_ERROR_);
 	return (_SUCCESS_);

@@ -6,7 +6,7 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:21:26 by ychibani          #+#    #+#             */
-/*   Updated: 2022/01/16 17:32:19 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:56:00 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <stddef.h>
+# include <fcntl.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_READ
+#  define BUFFER_READ 1
+# endif
 
 typedef struct s_list
 {
@@ -51,7 +56,7 @@ char		*ft_strdup(const char *s1);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
-char		*ft_strjoin(char *s1, char *s2);
+char		*_strjoin(char *s1, char *s2);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_putchar_fd(char c, int fd);
@@ -67,5 +72,6 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char		*__gnl(int fd);
 
 #endif

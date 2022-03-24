@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpush_back_data.c                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 12:02:07 by ychibani          #+#    #+#             */
-/*   Updated: 2022/03/24 12:02:11 by ychibani         ###   ########.fr       */
+/*   Created: 2022/03/22 14:23:42 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 12:44:20 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes.h"
-
-void	ft_lstpush_back_data(t_data *lst, t_stack *node)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!lst->size)
-	{
-		lst->head = node;
-		node->prev = node;
-		node->next = node;
-		lst->size += 1;
-		return ;
-	}
-	node->next = lst->head;
-	node->prev = lst->head->prev;
-	lst->head->prev = node;
-	node->prev->next = node;
-	lst->size += 1;
+	int	i;
+
+	i = 0;
+	while ((s1[i]) && (s2[i]) && (s1[i] == s2[i]))
+		i++;
+	return (s1[i] - s2[i]);
 }

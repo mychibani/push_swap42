@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_best_option.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 11:36:38 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 11:37:43 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes.h"
 
 int	a_up_and_b_down(t_data *b, t_op *op)
@@ -56,17 +68,17 @@ int	a_and_b_down(t_op *op, t_data *a, t_data *b)
 
 int	_calcul_positions_(t_data *a, t_data *b, t_op *op)
 {
-	t_op *best_case;
+	t_op	*best_case;
 
 	best_case = init_op();
 	best_case->pos_a = op->pos_a;
 	best_case->pos_b = op->pos_b;
 	if (op->max_op > a_up_and_b_down(b, best_case))
-	  	a_up_and_b_down(b, op);
+		a_up_and_b_down(b, op);
 	if (op->max_op > b_up_and_a_down(a, best_case))
 		b_up_and_a_down(a, op);
 	if (op->max_op > a_and_b_up(best_case))
-	 	a_and_b_up(op);
+		a_and_b_up(op);
 	if (op->max_op > a_and_b_down(best_case, a, b))
 		a_and_b_down(op, a, b);
 	free(best_case);

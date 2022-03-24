@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 11:47:51 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 11:48:29 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes.h"
 
 void	_next_greater_(t_data *a, int to_check, int pos_b, t_op **op)
 {
-	int			i;
-	int			temp;
-	t_stack		*check_index;
+	int		i;
+	int		temp;
+	t_stack	*check_index;
 
 	i = 0;
 	(*op)->pos_b = pos_b;
@@ -26,7 +38,7 @@ int	_find_max_(t_data *stack)
 {
 	int		i;
 	int		max_value;
-	t_stack *index;
+	t_stack	*index;
 
 	i = 0;
 	max_value = 0;
@@ -41,7 +53,7 @@ int	_find_max_(t_data *stack)
 	return (max_value);
 }
 
-int		_sum_op_(t_op *op)
+int	_sum_op_(t_op *op)
 {
 	return (op->ra + op->rb + op->rra + op->rrb + op->rrr + op->rr);
 }

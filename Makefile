@@ -1,7 +1,8 @@
-SRCS_SWAP		=	srcs/push_swap/push_swap.c		\
-					srcs/push_swap/parsing.c		\
-					srcs/push_swap/init.c			\
-					srcs/push_swap/tests_utils.c	\
+SRCS_MAIN		=	srcs/push_swap/push_swap.c
+
+SRCS_SWAP		=	srcs/push_swap/parsing.c				\
+					srcs/push_swap/init.c					\
+					srcs/algorithms/init_and_reinit_op.c	\
 					srcs/push_swap/cleaner_prog.c
 
 
@@ -18,7 +19,6 @@ SRCS_ALGO		=	srcs/algorithms/sorting.c		\
 					srcs/algorithms/sorting_finisher.c		\
 					srcs/algorithms/execute_operations.c	\
 					srcs/algorithms/find_best_option.c		\
-					srcs/algorithms/init_and_reinit_op.c
 
 
 SRCS_UTILS		=		srcs/utils/ft_lstadd_back_data.c	\
@@ -39,6 +39,8 @@ CHECKER			=	checker
 
 PUSH_SWAP 		= 	push_swap
 
+OBJS_MAIN 		= 	${SRCS_MAIN:.c=.o}
+
 OBJS_OPE 		= 	${SRCS_OPE:.c=.o}
 
 OBJS_ALGO		=	${SRCS_ALGO:.c=.o}
@@ -49,8 +51,11 @@ OBJS_SWAP 		= 	${SRCS_SWAP:.c=.o}
 
 OBJS_CHECK		=	${SRCS_CHECK:.c=.o}
 
+DEPS_FILES		=	${SRCS_MAIN:.c=.d} ${SRCS_OPE:.c=.d} ${SRCS_ALGO:.c=.d} ${SRCS_UTILS:.c=.d} ${SRCS_SWAP:.c=.d} ${SRCS_CHECK:.c=.d} 
 
 INCS			=	-I ./includes -I libft/includes/
+
+LIBFT			=	libft/libft.a
 
 CC				=	gcc
 
@@ -85,26 +90,36 @@ all:		${PUSH_SWAP}
 
 .c.o:
 				@echo "Compiling ${_YELLOW}${_BOLD}$<${_END}..."
-				@${CC} ${CFLAGS} ${INCS} -c $< -o $@ ${INCS}
+				@${CC} ${CFLAGS} ${INCS} -MMD -c $< -o $@ ${INCS}
 
-${PUSH_SWAP}:	${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS}
+${PUSH_SWAP}:	${OBJS_MAIN} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS}
 				@echo "Compiling ${_GREEN}${_BOLD}libft${_END}..."
 				@${MAKE} -C libft >/dev/null
 				@echo "Compiling ${_CYAN}${_BOLD}push_swap${_END}..."
-				@${CC} ${CFLAGS} ${INCS} ${OBJS_UTILS} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} -o ${PUSH_SWAP} libft/libft.a
+				@${CC} ${CFLAGS} ${INCS} ${OBJS_MAIN} ${OBJS_UTILS} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} -o ${PUSH_SWAP} ${LIBFT}
+
+${CHECKER}	:	${OBJS_CHECK} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS}
+				@echo "Compiling ${_GREEN}${_BOLD}libft${_END}..."
+				@${MAKE} -C libft >/dev/null
+				@echo "Compiling ${_CYAN}${_BOLD}checker${_END}..."
+				@${CC} ${CFLAGS} ${INCS} ${OBJS_CHECK} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS} -o ${CHECKER} ${LIBFT}
+
+bonus		:	${CHECKER}
 
 clean:
 				@echo "Deleting ${_RED}${_BOLD}binary files${_END}..."
-				@${RM} ${OBJS_SWAP} ${OBJS_CHECK} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS}
+				@${RM} ${OBJS_MAIN} ${OBJS_SWAP} ${OBJS_CHECK} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS} ${DEPS_FILES}
 				@echo "Deleting ${_RED}${_BOLD}libft binary files${_END}..."
 				@${MAKE} -C libft clean >/dev/null
 
 fclean:			clean
 				@echo "Deleting ${_RED}${_BOLD}push_swap and checker${_END}..."
-				@${RM} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS} ${PUSH_SWAP}
+				@${RM} ${OBJS_MAIN} ${OBJS_SWAP} ${OBJS_OPE} ${OBJS_ALGO} ${OBJS_UTILS} ${OBJS_CHECK} ${PUSH_SWAP} ${CHECKER}
 				@echo "Deleting ${_RED}${_BOLD}libft librairy${_END}..."
 				@${MAKE} -C libft fclean >/dev/null
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+-include ${DEPS_FILES}
+
+.PHONY:			all clean fclean re bonus 

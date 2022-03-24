@@ -1,6 +1,18 @@
- #include "includes.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 11:17:59 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 11:28:26 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-long _atol_(char *str)
+#include "includes.h"
+
+long	_atol_(char *str)
 {
 	long	nbr;
 	int		i;
@@ -9,19 +21,18 @@ long _atol_(char *str)
 	nbr = 0;
 	i = 0;
 	sign = 1;
-	if (str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
+		if (str[i] == '-')
+			sign = -1;
 		i++;
-		sign = -1;
 	}
-	while (str[i] > '0' && str[i] < '9')
+	while (ft_isdigit(str[i]))
 	{
 		nbr = nbr * 10 + (str[i] - '0');
 		i++;
 	}
-	if (sign == -1)
-		nbr *= -1;
-	return (nbr);
+	return (nbr * sign);
 }
 
 int	nbr_check(char *str, int size)
@@ -48,9 +59,9 @@ int	ft_check_str(char *str)
 			i++;
 		if (!str[i])
 			return (_ERROR_);
-		start =	i;
-		if (str[i] == '-' && ft_isdigit(str[i + 1]))
-		 	i++;
+		start = i;
+		if ((str[i] == '-' || str[i] == '+') && ft_isdigit(str[i + 1]))
+			i++;
 		while (str[i] && ft_isdigit(str[i]))
 			i++;
 		if (str[i] != '\0' && str[i] != ' ')
@@ -66,14 +77,14 @@ int	_parse_(int ac, char **av, t_data *data)
 	int		i;
 	char	*res;
 
-	res = ft_strdup("");
 	i = 1;
+	res = NULL;
 	if (ac < 2)
-		return (free(res), _ERROR_);
+		return (_ERROR_);
 	while (i < ac)
 	{
-		res = ft_strjoin(res, " ");
-		res = ft_strjoin(res, av[i]);
+		res = _strjoin(res, " ");
+		res = _strjoin(res, av[i]);
 		i++;
 	}
 	if (ft_check_str(res) == _SUCCESS_)

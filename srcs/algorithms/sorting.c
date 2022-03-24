@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 11:48:38 by ychibani          #+#    #+#             */
+/*   Updated: 2022/03/24 11:51:52 by ychibani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes.h"
 
-int		_main_algorithm_(t_data *a, t_data *b, t_op *op)
+int	_main_algorithm_(t_data *a, t_data *b, t_op *op)
 {
 	t_stack	*current;
 	t_op	*best_op;
@@ -25,8 +37,7 @@ int		_main_algorithm_(t_data *a, t_data *b, t_op *op)
 		current = b->head;
 		i = 0;
 	}
-	_reset_stack_(a, b, op);
-	free(best_op);
+	_reset_stack_(a, b, op, best_op);
 	return (_SUCCESS_);
 }
 
@@ -50,12 +61,12 @@ int	_medium_sort_(t_data *a, t_data *b, t_op *op)
 int	_sorting_algorithms_(t_data *a, t_data *b, t_op *op)
 {
 	if (a->size == 2)
- 		sa(a, "sa\n");
-  	else if (a->size == 3)
-  		_small_sort_(a);
+		sa(a, "sa\n");
+	else if (a->size == 3)
+		_small_sort_(a);
 	else if (a->size < 6)
 		_medium_sort_(a, b, op);
-  	else
-  		_big_algo_(a, b, op);
+	else
+		_big_algo_(a, b, op);
 	return (_SUCCESS_);
 }

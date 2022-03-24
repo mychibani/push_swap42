@@ -8,6 +8,7 @@ SRCS_FILES =	char/ft_isdigit.c			\
 				string/ft_substr.c			\
 				string/ft_bzero.c			\
 				string/ft_strncmp.c			\
+				string/ft_strcmp.c			\
 				string/ft_strchr.c			\
 				string/ft_strlcpy.c			\
 				string/ft_strlcat.c			\
@@ -23,7 +24,7 @@ SRCS_FILES =	char/ft_isdigit.c			\
 				stdlib/ft_itoa.c			\
 				lists/ft_lstiter.c			\
 				lists/ft_lstsize.c			\
-				./lists/ft_lstadd_front.c	\
+				lists/ft_lstadd_front.c	\
 				lists/ft_lstadd_back.c		\
 				lists/ft_lstnew.c			\
 				lists/ft_lstlast.c			\
@@ -39,7 +40,8 @@ SRCS_FILES =	char/ft_isdigit.c			\
 				fd/ft_putchar_fd.c			\
 				fd/ft_putnbr_fd.c			\
 				fd/ft_putendl_fd.c			\
-				fd/ft_putstr_fd.c
+				fd/ft_putstr_fd.c			\
+				fd/gnl.c
 
 OBJS_FILES 		=		${SRCS:.c=.o}
 

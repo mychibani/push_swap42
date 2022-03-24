@@ -6,27 +6,34 @@
 /*   By: ychibani <ychibani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:13:33 by ychibani          #+#    #+#             */
-/*   Updated: 2022/01/16 17:35:51 by ychibani         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:44:02 by ychibani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*_strjoin(char *s1, char *s2)
 {
-	char	*final_str;
 	int		i;
+	int		j;
+	char	*final_line;
 
+	i = 0;
+	j = 0;
 	if (!s1)
 		s1 = ft_strdup("");
-	if (!s1 || !s2)
+	if (!s2)
+		return (NULL);
+	final_line = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!final_line)
 		return (0);
-	i = ft_strlen(s1) + ft_strlen(s2) + 1;
-	final_str = ft_calloc(i, sizeof(char));
-	if (!(final_str))
-		return (0);
-	ft_strlcpy(final_str, (char *)s1, ft_strlen(s1) + 1);
-	ft_strlcat(final_str, (char *)s2, i);
-	free(s1);
-	return (final_str);
+	while (s1[i])
+	{
+		final_line[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+		final_line[i++] = s2[j++];
+	final_line[i] = 0;
+	return (free(s1), final_line);
 }
